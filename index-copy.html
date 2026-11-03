@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08111d">
+<title>CYBERNETIC OPERATIONS — Óbudai Egyetem SOC</title>
+<style>
+:root{--bg:#07101b;--bg2:#0a1624;--panel:#0d1b2a;--panel2:#102236;--line:#20364b;--line2:#29465f;--text:#eaf2fa;--muted:#91a5b9;--blue:#8bc8f4;--blue2:#4f94c6;--teal:#78d6cb;--amber:#e7b47b;--red:#ff777e;--green:#7bd9ad;--shadow:0 16px 50px #0005;--radius:15px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 70% -10%,#18334a 0,transparent 38%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.01em}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace}.muted{color:var(--muted)}.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}.app{display:grid;grid-template-columns:244px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);background:#07111ded;backdrop-filter:blur(20px);display:flex;flex-direction:column;padding:22px 14px 16px;z-index:5}.brand{display:flex;gap:12px;align-items:center;padding:2px 10px 23px;border-bottom:1px solid var(--line);margin-bottom:18px}.brand-mark{width:38px;height:42px;border:1px solid #56748e;border-radius:10px;display:grid;place-items:center;color:var(--blue);font-size:22px;background:linear-gradient(145deg,#173047,#0a1522)}.brand strong{display:block;font-size:11px;letter-spacing:.13em}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.nav-label{padding:8px 12px;color:#637b91;font-size:9px;letter-spacing:.18em;text-transform:uppercase}.nav{display:grid;gap:4px}.nav button{display:flex;align-items:center;gap:12px;text-align:left;color:#9eb1c4;background:transparent;border:1px solid transparent;border-radius:9px;padding:11px 12px;font-size:12px;transition:.2s}.nav button .ico{width:18px;text-align:center;font-size:16px;color:#8ca6bd}.nav button:hover,.nav button.active{background:linear-gradient(90deg,#193149aa,#0d1b2a);border-color:#294861;color:#f5f9fd}.nav button.active .ico{color:var(--blue)}.sidebar-bottom{margin-top:auto;padding:14px 10px 0;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.online-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px #7bd9ad88;margin-right:7px}.main{min-width:0}.topbar{height:70px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:20px;background:#081320b8;backdrop-filter:blur(18px);position:sticky;top:0;z-index:4}.crumb{font-size:11px;color:var(--muted)}.crumb b{color:var(--text);font-weight:600}.top-actions{display:flex;align-items:center;gap:9px}.chip,.btn,.lang{border:1px solid var(--line2);background:#0e1d2c;color:#b9c9d8;border-radius:8px;padding:8px 11px;font-size:11px}.chip{display:flex;align-items:center;gap:7px}.lang{padding:7px 9px}.lang.active{color:var(--blue);border-color:#4b7da2;background:#142b40}.icon-btn{width:35px;height:35px;border:1px solid var(--line);background:var(--panel);color:var(--blue);border-radius:9px}.content{max-width:1600px;margin:auto;padding:26px 30px 34px}.page{display:none;animation:fade .24s ease}.page.active{display:block}@keyframes fade{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin:3px 0 22px}.page-head h1{font-size:clamp(23px,3vw,34px);font-weight:550;letter-spacing:-.045em;margin:5px 0 6px}.page-head p{color:var(--muted);margin:0;font-size:12px}.head-meta{text-align:right;color:var(--muted);font-size:10px}.head-meta strong{display:block;color:var(--green);font-size:11px;font-weight:500;margin-top:5px}.hero{position:relative;overflow:hidden;border:1px solid #29435a;border-radius:17px;min-height:225px;padding:30px 34px;background:linear-gradient(100deg,#0b1a2a 0%,#0b1b2bd9 50%,#10283cbb 100%),radial-gradient(circle at 80% 50%,#295775,transparent 42%);box-shadow:var(--shadow);margin-bottom:18px}.hero:after{content:"";position:absolute;right:-70px;top:-170px;width:520px;height:520px;border:1px solid #47708c55;border-radius:50%;box-shadow:0 0 0 28px #47708c0d,0 0 0 70px #47708c0a,0 0 0 120px #47708c08;pointer-events:none}.hero-grid{position:absolute;inset:0;background-image:linear-gradient(#7aa9ca0a 1px,transparent 1px),linear-gradient(90deg,#7aa9ca0a 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(90deg,transparent,black);pointer-events:none}.hero-content{position:relative;z-index:1;max-width:620px}.hero h2{font-size:clamp(27px,4vw,43px);line-height:1.06;letter-spacing:-.05em;font-weight:550;margin:12px 0}.hero h2 span{color:var(--blue)}.hero p{max-width:520px;color:#aabccc;font-size:13px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:21px}.btn-primary{background:linear-gradient(135deg,#b5ddf7,#6da8d0);color:#071522;border-color:#9dc8e6;font-weight:650}.btn:hover,.icon-btn:hover{filter:brightness(1.15)}.grid{display:grid;gap:14px}.metrics{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:16px}.card{background:linear-gradient(145deg,#0d1b2a,#0a1724);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 24px #0001;min-width:0}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 16px 0}.card-title{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#a9bed0}.card-body{padding:14px 16px 16px}.metric{font-size:27px;letter-spacing:-.05em;font-weight:560;margin:7px 0 1px}.metric small{font-size:11px;letter-spacing:0;color:var(--muted);font-weight:400}.subline{font-size:10px;color:var(--muted)}.delta{font-size:10px;color:var(--green);margin-top:8px}.status{display:inline-flex;align-items:center;gap:6px;border:1px solid #34516a;background:#11283a;color:#a8c9df;border-radius:5px;padding:4px 7px;font-size:9px;letter-spacing:.06em;text-transform:uppercase}.status.red{border-color:#703940;background:#301c27;color:#ff9da2}.status.amber{border-color:#735638;background:#2b241b;color:#f2c38b}.status.green{border-color:#2e6557;background:#142b2b;color:#91e0be}.status:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}.two-col{grid-template-columns:minmax(0,1.35fr) minmax(280px,.8fr);margin-bottom:16px}.three-col{grid-template-columns:minmax(0,1.1fr) minmax(300px,1fr) minmax(230px,.75fr);margin-bottom:16px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.section-title h3{margin:0;font-size:13px;font-weight:550}.section-title span{font-size:10px;color:var(--muted)}.vector-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.vector{border:1px solid var(--line);background:#0b1826;border-radius:10px;padding:13px;transition:.18s;text-align:left;color:var(--text);min-width:0}.vector:hover,.vector.selected{border-color:#75acd1;background:#11283a;box-shadow:inset 0 0 0 1px #75acd122}.vector-top{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600}.vector-icon{display:grid;place-items:center;width:27px;height:27px;border:1px solid #2c4b63;border-radius:7px;color:var(--blue);flex-shrink:0}.vector p{font-size:10px;color:var(--muted);margin:9px 0 0}.vector .mono{font-size:9px;color:#85a6c0}.topology{height:240px;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#11283a,#091521 72%);border-top:1px solid var(--line);margin-top:12px}.topology svg{width:100%;height:100%}.node{cursor:pointer}.node circle{fill:#102c41;stroke:#6daed8;stroke-width:1.4}.node text{fill:#b9d2e4;font-size:10px}.node.active circle{fill:#4b3326;stroke:var(--amber)}.node:hover circle{stroke:#fff;stroke-width:2}.telemetry{height:72px;width:100%;display:block}.feed{display:grid;gap:0}.feed-row{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:start;padding:11px 0;border-top:1px solid #1c3042;font-size:10px}.feed-row:first-child{border-top:0}.feed-time{color:#7790a5;font-family:ui-monospace,monospace}.feed-row strong{font-weight:500}.feed-row p{margin:3px 0 0;color:var(--muted);font-size:10px}.incidents-layout{grid-template-columns:minmax(290px,.85fr) minmax(0,1.5fr);align-items:start}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.field{background:#091624;border:1px solid var(--line2);color:var(--text);border-radius:8px;padding:9px 10px;min-width:0;outline:none}.field:focus{border-color:var(--blue2)}.search{flex:1;min-width:140px}.incident-row{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;padding:13px 12px;border-top:1px solid var(--line);cursor:pointer;align-items:start}.incident-row:first-child{border-top:0}.incident-row:hover,.incident-row.selected{background:#112438}.incident-num{width:23px;height:23px;display:grid;place-items:center;border:1px solid #3b5367;border-radius:50%;font-size:10px;color:#b5c9da}.incident-row.selected .incident-num{border-color:var(--red);color:var(--red)}.incident-row strong{font-size:11px;font-weight:550;display:block}.incident-row small{font-size:9px;color:var(--muted);display:block;margin-top:5px}.incident-time{font:10px ui-monospace,monospace;color:var(--muted)}.incident-detail{padding:17px}.detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.detail-top h2{font-size:18px;letter-spacing:-.03em;margin:10px 0 7px;font-weight:550}.detail-tabs{display:flex;gap:5px;flex-wrap:wrap;margin:18px 0 14px;border-bottom:1px solid var(--line);padding-bottom:8px}.tab{background:transparent;color:var(--muted);border:1px solid transparent;border-radius:6px;padding:7px 9px;font-size:10px}.tab.active{color:var(--blue);border-color:#2e506b;background:#102437}.tab-panel{font-size:11px;color:#b7c8d7;min-height:100px}.detail-kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:15px}.kv{border:1px solid var(--line);border-radius:8px;padding:10px}.kv small{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.08em}.kv strong{display:block;font-size:11px;margin-top:5px;font-weight:500;overflow-wrap:anywhere}.timeline{display:flex;align-items:center;gap:0;margin:20px 0 12px}.step{flex:1;text-align:center;position:relative;color:#6f8498;font-size:9px}.step:not(:last-child):after{content:"";position:absolute;top:5px;left:58%;width:84%;height:1px;background:#2b4358}.step i{display:block;position:relative;z-index:1;margin:0 auto 8px;width:11px;height:11px;border:2px solid #49667e;background:#0c1a28;border-radius:50%}.step.done i{background:var(--blue);border-color:var(--blue)}.step.current{color:var(--blue)}.step.current i{box-shadow:0 0 0 4px #7fc1ef22;border-color:var(--blue)}.matrix{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.tactic{padding:10px 7px;border:1px solid var(--line);border-radius:8px;background:#0b1825;min-height:75px}.tactic.hit{border-color:#704a39;background:#211d20}.tactic b{display:block;font:10px ui-monospace,monospace;color:#90b9d7}.tactic span{display:block;font-size:9px;color:#b3c4d3;margin-top:7px}.tactic small{display:block;color:var(--amber);font-size:9px;margin-top:4px}.table{width:100%;border-collapse:collapse;font-size:11px}.table th{text-align:left;color:#8099ad;text-transform:uppercase;font-size:9px;letter-spacing:.08em;font-weight:500;padding:10px;border-bottom:1px solid var(--line)}.table td{padding:12px 10px;border-bottom:1px solid #1b3041;color:#c4d2df}.table tr:last-child td{border-bottom:0}.table td:first-child{color:var(--text)}.agent-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.agent{padding:17px}.agent-icon{width:35px;height:35px;border:1px solid #2e506b;background:#12283a;color:var(--blue);border-radius:10px;display:grid;place-items:center;font-size:17px}.agent h3{font-size:12px;margin:13px 0 4px}.agent p{font-size:10px;color:var(--muted);margin:0 0 14px}.bar{height:5px;background:#203348;border-radius:10px;overflow:hidden;margin:8px 0}.bar i{height:100%;display:block;background:linear-gradient(90deg,#4b8fbd,#8bc8f4);border-radius:10px}.compliance-grid{grid-template-columns:1fr 1fr}.progress-ring{width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--blue) 0 78%,#24384a 78% 100%);display:grid;place-items:center;position:relative}.progress-ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#0d1b2a}.progress-ring strong{position:relative;font-size:21px;font-weight:550}.compliance-top{display:flex;align-items:center;gap:18px}.checklist{display:grid;gap:11px}.check{display:flex;align-items:flex-start;gap:9px;font-size:11px;color:#bdccd9}.check input{accent-color:#80bce5;margin-top:3px}.team-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.member{padding:18px}.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid #46627b;background:linear-gradient(145deg,#1d3b53,#0c1a28);color:#c6e4f8;font-size:14px}.member h3{font-size:12px;margin:12px 0 3px}.member p{font-size:10px;color:var(--muted);margin:0}.manifesto{font-size:clamp(22px,3vw,34px);line-height:1.22;letter-spacing:-.04em;max-width:800px;margin:15px 0 20px}.manifesto em{font-family:Georgia,serif;color:var(--blue);font-weight:400}.footer{display:flex;justify-content:space-between;gap:15px;border-top:1px solid var(--line);margin-top:28px;padding-top:17px;color:#6f879c;font-size:9px;letter-spacing:.08em;text-transform:uppercase}.toast{position:fixed;right:22px;bottom:22px;background:#142b3d;border:1px solid #426b88;color:#eaf5fc;padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);font-size:12px;z-index:20;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:none}.mobile-menu{display:none}.empty{padding:20px;text-align:center;color:var(--muted);font-size:11px}
+@media(max-width:1200px){.app{grid-template-columns:210px minmax(0,1fr)}.content{padding:22px}.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.three-col{grid-template-columns:1fr 1fr}.three-col>.card:last-child{grid-column:1/-1}.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;bottom:0;width:255px;height:100dvh;transform:translateX(-105%);transition:transform .22s;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.mobile-menu{display:inline-grid;place-items:center}.topbar{padding:0 16px;height:62px}.content{padding:18px 15px 25px}.crumb{display:none}.two-col,.three-col,.incidents-layout{grid-template-columns:1fr}.three-col>.card:last-child{grid-column:auto}.page-head{align-items:flex-start}.head-meta{display:none}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:24px 22px}.vector-list{grid-template-columns:1fr 1fr}.matrix{grid-template-columns:repeat(3,minmax(0,1fr))}.top-actions .chip{display:none}}
+@media(max-width:520px){.metrics{grid-template-columns:1fr 1fr;gap:9px}.metric{font-size:23px}.card-body{padding:12px}.card-head{padding:13px 12px 0}.hero h2{font-size:30px}.vector-list{grid-template-columns:1fr}.detail-kv{grid-template-columns:1fr 1fr}.agent-grid,.compliance-grid,.team-grid{grid-template-columns:1fr}.matrix{grid-template-columns:repeat(2,minmax(0,1fr))}.top-actions{gap:5px}.top-actions .lang{padding:6px}.footer{flex-direction:column}.page-head h1{font-size:25px}}
+
+.sidebar-backdrop{position:fixed;inset:0;width:100%;height:100%;background:#03080fee;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:90;opacity:0;pointer-events:none;transition:opacity .22s ease;cursor:pointer}
+.sidebar-backdrop.active{opacity:1;pointer-events:auto}
+.sidebar-brand-box{display:flex;align-items:center;justify-content:space-between;width:100%}
+.close-sidebar{display:none;width:32px;height:32px;border-radius:8px;background:#15283c;border:1px solid #2b4964;color:#d5e5f5;font-size:16px;cursor:pointer}
+.mobile-return-btn{display:none;align-items:center;gap:6px;background:#13263a;border:1px solid #294763;color:#d3e5f5;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;transition:.2s}
+.mobile-return-btn:hover{background:#1a3652;border-color:#417099}
+.mobile-current-title{display:none;font-size:13px;font-weight:700;color:#eaf2f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.back-to-top{position:fixed;right:18px;bottom:72px;width:38px;height:38px;border-radius:50%;background:#142b3d;border:1px solid #3d6787;color:#8cc4ec;display:grid;place-items:center;font-size:16px;box-shadow:0 6px 18px #00000088;cursor:pointer;opacity:0;pointer-events:none;transition:.22s;z-index:8}
+.back-to-top.visible{opacity:1;pointer-events:auto}
+.mobile-bottom-nav{display:none}
+.incident-back-btn{display:none;align-items:center;gap:6px;font-size:11px;padding:6px 12px;border-radius:7px;background:#152a3f;border:1px solid #2a4c6c;color:#a8cae6;cursor:pointer;margin-bottom:12px;transition:.2s}
+.incident-back-btn:hover{background:#1d3954;border-color:#4b7ea8}
+.table-responsive{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.members-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.members-search-box{flex:1;min-width:200px}
+.members-filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.members-view-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.view-toggle-pills{display:inline-flex;background:#091522;border:1px solid #1e3850;border-radius:8px;padding:3px;gap:3px}
+.pill-btn{background:transparent;border:0;color:#7e9bb4;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:.2s}
+.pill-btn:hover{color:#e2edf7}
+.pill-btn.active{background:#1c3954;color:#f0f6fc;box-shadow:0 2px 6px #00000044}
+
+.org-container{display:flex;flex-direction:column;gap:18px}
+.org-section-title{font-size:11px;font-weight:700;color:#7b97ae;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+.org-exec-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.org-exec-card{background:linear-gradient(135deg,#0e2338,#081726);border:1px solid #2d5577;border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 14px #00000055;position:relative;overflow:hidden}
+.org-exec-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#44a5e6}
+.org-exec-card.manager:before{background:#2ecc71}
+.org-avatar{width:42px;height:42px;border-radius:10px;background:#153047;border:1px solid #2f567a;display:grid;place-items:center;font-weight:700;font-size:13px;color:#88c6f0;flex-shrink:0}
+.org-exec-card.manager .org-avatar{background:#10382b;border-color:#226f4f;color:#4ade80}
+.org-details{flex:1;min-width:0}
+.org-details h3{margin:0 0 4px;font-size:14px;color:#f5f9fd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.org-details p{margin:0;font-size:11px;color:#85a0b8;font-weight:600}
+.org-badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:5px}
+.org-badge.head{background:#1b3d5b;color:#67b9f3;border:1px solid #2d6391}
+.org-badge.manager{background:#143f2f;color:#52e19c;border:1px solid #236c4b}
+
+.org-pillars-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.org-pillar-box{background:#091726;border:1px solid #1a3650;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.org-pillar-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #162f46}
+.org-pillar-title{display:flex;align-items:center;gap:10px}
+.org-pillar-title h2{margin:0;font-size:15px;color:#f0f6fc}
+.org-pillar-tag{padding:3px 8px;border-radius:5px;font-size:10px;font-weight:700}
+.org-pillar-tag.siem{background:#183652;color:#6ab2e6;border:1px solid #29557e}
+.org-pillar-tag.soar{background:#233a1e;color:#83d862;border:1px solid #38602c}
+
+.org-pillar-leads{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.org-lead-mini{background:#0d1e30;border:1px solid #20405e;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:10px}
+.org-lead-mini .org-avatar{width:32px;height:32px;font-size:11px}
+
+.org-subteams-wrap{display:flex;flex-direction:column;gap:12px}
+.org-subteam-card{background:#071320;border:1px solid #172d42;border-radius:9px;padding:12px}
+.org-subteam-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #132538}
+.org-subteam-header strong{font-size:12px;color:#d5e5f5}
+.org-subteam-header span{font-size:10px;color:#6786a0}
+
+.org-members-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:7px}
+.org-member-item{background:#0a1827;border:1px solid #1a334c;border-radius:7px;padding:7px 9px;display:flex;align-items:center;gap:9px;transition:.2s}
+.org-member-item:hover{border-color:#33618a;background:#0d2033;transform:translateY(-1px)}
+.org-member-item.is-lead{background:#0e2439;border-color:#2a5073}
+.org-member-item .org-avatar{width:28px;height:28px;font-size:10px;border-radius:6px}
+.org-member-item.is-lead .org-avatar{background:#1c4263;color:#87cdfa}
+.org-member-info{flex:1;min-width:0}
+.org-member-info strong{display:block;font-size:11px;color:#e8f1f8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.org-member-info span{display:block;font-size:9px;color:#7e9bb5}
+.org-member-item.is-lead .org-member-info span{color:#5db7f5;font-weight:600}
+
+.staffing-sheet-table{width:100%;border-collapse:collapse;font-size:11px;min-width:760px}
+.staffing-sheet-table th,.staffing-sheet-table td{border:1px solid #233e54;padding:8px 10px;text-align:left}
+.excel-soc-banner{background:#6eb823;color:#091b05;font-weight:800;font-size:13px;text-align:center;letter-spacing:.08em;padding:9px}
+.excel-lead-row td{background:#0a1b2b;color:#e6eff7;font-weight:600}
+.excel-lead-title{color:#76ba27;font-weight:700}
+.excel-pillar-banner{background:#7ebf2e;color:#081c05;font-weight:800;font-size:12px;text-align:center;letter-spacing:.06em;padding:7px}
+.excel-sub-banner{background:#9ad345;color:#091d05;font-weight:700;font-size:11px;text-align:center;padding:7px 8px}
+.excel-person-cell{background:#0b1928;color:#d8e6f3;font-weight:500}
+.excel-role-cell{background:#081522;color:#89a8c2;font-size:10px}
+.excel-lead-person{font-weight:700;color:#f0f7fd}
+.excel-lead-role{color:#49b3e6;font-weight:700}
+.excel-diagonal-box{background:repeating-linear-gradient(45deg,#071421,#071421 8px,#0e2236 8px,#0e2236 16px);position:relative}
+
+@media(max-width:850px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;height:100dvh;transform:translateX(-105%);transition:transform .22s cubic-bezier(0.4, 0, 0.2, 1);box-shadow:var(--shadow);z-index:100}
+  .sidebar.open{transform:translateX(0)}
+  .close-sidebar{display:inline-grid;place-items:center}
+  .mobile-return-btn{display:none}
+  .mobile-return-btn.visible{display:inline-flex}
+  .mobile-current-title{display:block}
+  .mobile-bottom-nav{position:fixed;bottom:0;left:0;right:0;height:56px;background:#06111ee8;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid #1a334a;display:grid;grid-template-columns:repeat(4,1fr);z-index:95;padding:4px 6px}
+  .mobile-bottom-nav button{background:transparent;border:0;color:#7e9bb4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;cursor:pointer;border-radius:7px;padding:4px;font-family:inherit;-webkit-tap-highlight-color:transparent;user-select:none}
+  .mobile-bottom-nav button *{pointer-events:none}
+  .mobile-bottom-nav button.active{color:#80bfe8;font-weight:700}
+  .mobile-bottom-nav button .ico{font-size:16px}
+  .app{padding-bottom:58px}
+  .org-pillars-grid{grid-template-columns:1fr}
+  .org-exec-row{grid-template-columns:1fr}
+  .members-toolbar{flex-direction:column;align-items:stretch}
+  .members-filter-group{width:100%}
+  .members-filter-group select{flex:1}
+  .members-view-actions{justify-content:space-between;width:100%}
+  .incident-back-btn{display:inline-flex}
+}
+@media(min-width:851px){
+  .back-to-top{bottom:24px}
+}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="sidebar-brand-box"><div style="display:flex;align-items:center;gap:10px"><div class="brand-mark">⌘</div><div><strong>ÓBUDAI EGYETEM</strong><small data-i18n="institute">Biztonságtudományi és Kibervédelmi Intézet</small></div></div><button class="icon-btn close-sidebar" id="closeSidebarBtn" aria-label="Bezárás">✕</button></div></div>
+  <div class="nav-label" data-i18n="workspace">Munkaterület</div>
+  <nav class="nav" id="nav">
+    <button class="active" data-page="warroom"><span class="ico">◈</span><span data-i18n="navWar">Műveleti központ</span></button>
+    <button data-page="incidents"><span class="ico">◎</span><span data-i18n="navInc">Incidenskezelés</span></button>
+    <button data-page="range"><span class="ico">⌘</span><span data-i18n="navRange">Cyber Range topológia</span></button>
+    <button data-page="mitre"><span class="ico">◉</span><span>MITRE ATT&CK</span></button>
+    <button data-page="telemetry"><span class="ico">⌁</span><span data-i18n="navTele">Telemetria & naplók</span></button>
+    <button data-page="ai"><span class="ico">✳</span><span>AI Agents & SOAR</span></button>
+    <button data-page="nis2"><span class="ico">▤</span><span>NIS2 Hub</span></button>
+    <button data-page="reports"><span class="ico">▥</span><span data-i18n="navReports">Jelentések</span></button>
+    <button data-page="members"><span class="ico">👥</span><span data-i18n="navMembers">Alkalmazottak</span></button>
+    <button data-page="team"><span class="ico">✧</span><span data-i18n="navTeam">Stáblista & manifesztum</span></button>
+  </nav>
+  <div class="sidebar-bottom"><div><span class="online-dot"></span><span data-i18n="systemOnline">Rendszer online</span></div><div class="mono" style="margin-top:7px" id="sideClock">UTC+2 · --:--:--</div><div style="margin-top:12px">TRIPARTITE FUSION ARCHITECTURE</div><div style="margin-top:4px">SOC + CYBER RANGE + AI</div></div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:10px"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="Menü">☰</button><button class="mobile-return-btn" id="mobileReturnBtn" aria-label="Vissza">← <span id="mobileReturnLabel">Vissza</span></button><div class="crumb"><span data-i18n="breadcrumb">Óbudai Egyetem / Kiberbiztonsági labor</span> &nbsp; / &nbsp; <b id="crumbCurrent">Műveleti központ</b></div><div class="mobile-current-title" id="mobileCurrentTitle">Műveleti központ</div></div>
+  <div class="top-actions"><div class="chip"><span class="online-dot"></span><span data-i18n="rangeReady">Cyber Range készenlét</span></div><button class="lang active" data-lang="hu">HU</button><button class="lang" data-lang="en">EN</button><button class="icon-btn" id="helpBtn" aria-label="Súgó">?</button></div>
+</header>
+<div class="content">
+<section class="page active" id="page-warroom">
+  <div class="page-head"><div><div class="eyebrow">TRIPARTITE FUSION ARCHITECTURE</div><h1 data-i18n="warTitle">Műveleti központ <span class="muted">// War Room</span></h1><p data-i18n="warSub">Helyzetkép, fenyegetettség és incidenskezelés egyetlen munkafelületen.</p></div><div class="head-meta"><span data-i18n="lastSync">UTOLSÓ SZINKRONIZÁLÁS</span><strong>● <span data-i18n="synced">Szinkronizálva</span></strong><span class="mono" id="headClock">--:--:--</span></div></div>
+  <div class="hero"><div class="hero-grid"></div><div class="hero-content"><div class="eyebrow">ÓBUDAI EGYETEM · CYBERNETIC OPERATIONS</div><h2 data-i18n="heroTitle">A biztonság nem egy termék.<br><span>Hanem egy folyamat.</span></h2><p data-i18n="heroSub">SOC, Cyber Range és AI-ügynökök egységes műveleti környezetben — észlelés, elemzés, döntés és reagálás.</p><div class="hero-actions"><button class="btn btn-primary" data-go="incidents" data-i18n="openIncidents">Incidensek megnyitása ↗</button><button class="btn" data-go="range" data-i18n="openRange">Cyber Range felfedezése</button></div></div></div>
+  <div class="grid metrics">
+    <article class="card"><div class="card-head"><span class="card-title" data-i18n="threatLevel">DEFCON készültség</span><span>◈</span></div><div class="card-body"><div class="metric" style="color:var(--amber)">DEFCON 2</div><div class="subline" data-i18n="highThreat">Magas / súlyos támadás</div><div class="bar"><i style="width:75%"></i></div><div class="subline"><span data-i18n="threatIndex">Fenyegetettségi index</span> <b>75/100</b></div></div></article>
+    <article class="card"><div class="card-head"><span class="card-title">MTTD</span><span>◷</span></div><div class="card-body"><div class="metric">4.2 <small>MIN</small></div><div class="subline" data-i18n="meanDetect">Átlagos észlelési idő</div><div class="delta">SLA &lt; 15.0 min</div></div></article>
+    <article class="card"><div class="card-head"><span class="card-title">MTTR</span><span>↻</span></div><div class="card-body"><div class="metric">18.5 <small>MIN</small></div><div class="subline" data-i18n="meanRespond">Átlagos elhárítási idő</div><div class="delta">SLA &lt; 60.0 min</div></div></article>
+    <article class="card"><div class="card-head"><span class="card-title" data-i18n="activeIncidents">Aktív incidensek</span><span style="color:var(--red)">△</span></div><div class="card-body"><div class="metric">3 <small>ACTIVE</small></div><div class="subline"><span style="color:var(--red)">2 CRITICAL</span> / <span style="color:var(--amber)">1 HIGH</span></div><div class="delta" style="color:var(--muted)" data-i18n="updatedDemo">Demóadatok · frissített nézet</div></div></article>
+    <article class="card"><div class="card-head"><span class="card-title" data-i18n="rangeNodes">Cyber Range csomópontok</span><span>⌘</span></div><div class="card-body"><div class="metric">5 <small>HOSTS</small></div><div class="subline" data-i18n="monitored">3 felügyelt · 1 428 napló</div><div class="delta">● <span data-i18n="healthy">Szenzorok aktívak</span></div></div></article>
+  </div>
+  <div class="grid two-col">
+    <article class="card"><div class="card-head"><div><div class="card-title" data-i18n="attackDeck">Támadási vektor vezérlő</div><div class="subline" style="margin-top:5px" data-i18n="simDesc">Cyber Range · elkülönített szimulációs környezet</div></div><span class="status green" data-i18n="simReady">Készenlét</span></div><div class="card-body"><div class="vector-list" id="vectorList">
+      <button class="vector selected" data-vector="ssh"><div class="vector-top"><span class="vector-icon">⌁</span><span>SSH BRUTE FORCE + CVE</span></div><p data-i18n="sshDesc">Root jogosultságkiterjesztés</p><p class="mono">dmz-web-01 · 10.0.1.15</p></button>
+      <button class="vector" data-vector="sql"><div class="vector-top"><span class="vector-icon">▤</span><span>SQL INJECTION</span></div><p data-i18n="sqlDesc">Adatbázis-exfiltráció</p><p class="mono">dmz-web-01 → srv-finance-db</p></button>
+      <button class="vector" data-vector="cowrie"><div class="vector-top"><span class="vector-icon">⌘</span><span>COWRIE HONEYPOT</span></div><p data-i18n="cowrieDesc">Interakció és botnet-triázs</p><p class="mono">honeypot-cowrie-01</p></button>
+      <button class="vector" data-vector="lockbit"><div class="vector-top"><span class="vector-icon">⛨</span><span>LOCKBIT 3.0 EMULATION</span></div><p data-i18n="lockDesc">SMB oldalirányú terjedés</p><p class="mono">ws-workstation-03 → backup-vault-01</p></button>
+    </div><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px"><span class="subline" id="vectorSelected" data-i18n="selectedVector">Kiválasztva: SSH brute force + CVE</span><button class="btn btn-primary" id="simulateBtn" data-i18n="runSim">Szimuláció indítása</button></div></div></article>
+    <article class="card"><div class="card-head"><div><div class="card-title" data-i18n="liveTelemetry">Élő telemetria-folyam</div><div class="subline" style="margin-top:5px" data-i18n="ingestWatch">Nyitott figyelők · API ingest</div></div><span class="status green" data-i18n="live">Élő</span></div><div class="card-body"><div style="display:flex;justify-content:space-between;font-size:10px"><span class="muted" data-i18n="buffer">Puffer</span><b class="mono" id="bufferCount">0</b></div><svg class="telemetry" viewBox="0 0 420 75" preserveAspectRatio="none" aria-label="Telemetria grafikon"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#6ab3e4" stop-opacity=".3"/><stop offset="1" stop-color="#6ab3e4" stop-opacity="0"/></linearGradient></defs><path d="M0 57 L25 48 L48 52 L70 34 L94 41 L117 27 L140 37 L163 19 L188 34 L211 30 L235 42 L257 23 L281 31 L304 15 L328 26 L350 19 L375 35 L398 24 L420 29 L420 75 L0 75Z" fill="url(#fill)"/><polyline points="0,57 25,48 48,52 70,34 94,41 117,27 140,37 163,19 188,34 211,30 235,42 257,23 281,31 304,15 328,26 350,19 375,35 398,24 420,29" fill="none" stroke="#78bce8" stroke-width="1.5"/></svg><div class="subline mono">/API/V1/INGEST/*</div><div class="feed" id="miniFeed"><div class="feed-row"><span class="feed-time">17:19:42</span><div><strong>Suricata · Alert batch received</strong><p>142 SSH authentication alerts · range-gw-01</p></div><span class="status red">High</span></div><div class="feed-row"><span class="feed-time">17:18:06</span><div><strong>SOAR · Playbook queued</strong><p>Enrichment and triage workflow</p></div><span class="status amber">Queue</span></div><div class="feed-row"><span class="feed-time">17:16:51</span><div><strong>Sensor · Heartbeat healthy</strong><p>honeypot-cowrie-01</p></div><span class="status green">OK</span></div></div></div></article>
+  </div>
+  <div class="grid two-col">
+    <article class="card"><div class="card-head"><div><div class="card-title" data-i18n="topology">Cyber Range topológia</div><div class="subline" style="margin-top:5px" data-i18n="topologySub">Szimulált hálózati környezet · kattintson egy csomópontra</div></div><button class="btn" data-go="range" data-i18n="details">Részletek ↗</button></div><div class="topology"><svg id="miniTopology" viewBox="0 0 620 250" role="img" aria-label="Szimulált hálózati topológia"><g stroke="#2e526c" stroke-width="1.2" fill="none"><path d="M310 35L310 80L160 130L95 190M310 80L310 145L235 200M310 145L410 190M310 80L470 125L520 190M160 130L235 200M410 190L520 190M310 145L160 130"/></g><g class="node" data-node="Internet"><circle cx="310" cy="35" r="15"/><text x="310" y="60" text-anchor="middle">Internet</text></g><g class="node" data-node="dmz-web-01"><circle cx="310" cy="80" r="17"/><text x="310" y="108" text-anchor="middle">dmz-web-01</text></g><g class="node" data-node="range-gw-01"><circle cx="160" cy="130" r="15"/><text x="160" y="155" text-anchor="middle">range-gw-01</text></g><g class="node active" data-node="srv-finance-db"><circle cx="470" cy="125" r="15"/><text x="470" y="150" text-anchor="middle">finance-db</text></g><g class="node" data-node="ws-workstation-03"><circle cx="95" cy="190" r="15"/><text x="95" y="216" text-anchor="middle">workstation</text></g><g class="node" data-node="honeypot-cowrie-01"><circle cx="235" cy="200" r="15"/><text x="235" y="226" text-anchor="middle">honeypot</text></g><g class="node" data-node="backup-vault-01"><circle cx="410" cy="190" r="15"/><text x="410" y="216" text-anchor="middle">backup-vault</text></g><g class="node" data-node="srv-app"><circle cx="520" cy="190" r="15"/><text x="520" y="216" text-anchor="middle">srv-app</text></g></svg></div></article>
+    <article class="card"><div class="card-head"><div><div class="card-title" data-i18n="incidentQueue">Incidenssor</div><div class="subline" style="margin-top:5px" data-i18n="incidentQueueSub">Prioritás szerinti áttekintés</div></div><button class="btn" data-go="incidents" data-i18n="allIncidents">Összes incidens ↗</button></div><div id="warIncidentList"></div></article>
+  </div>
+</section>
+<section class="page" id="page-incidents">
+  <div class="page-head"><div><div class="eyebrow">DETECTION · TRIAGE · RESPONSE</div><h1 data-i18n="incTitle">Incidenskivizsgálási munkaállomás</h1><p data-i18n="incSub">Incidens-életciklus, bizonyítékok és intézkedések egyetlen konzolon.</p></div><div class="head-meta"><span data-i18n="demoEnvironment">SZIMULÁCIÓS KÖRNYEZET</span><strong>● LAB / DEMO</strong></div></div>
+  <div class="grid incidents-layout">
+    <article class="card"><div class="card-head"><div class="card-title" data-i18n="incidentList">Incidenslista</div><span class="status" id="incidentCount">4 RECORDS</span></div><div class="card-body"><div class="toolbar"><input class="field search" id="incidentSearch" placeholder="Keresés incidensek között…" data-i18n-placeholder="searchIncidents"><select class="field" id="severityFilter"><option value="all" data-i18n="allSeverity">Minden súlyosság</option><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option></select><select class="field" id="stateFilter"><option value="all" data-i18n="allStates">Minden állapot</option><option value="new">new</option><option value="triaged">triaged</option><option value="investigating">investigating</option><option value="contained">contained</option><option value="resolved">resolved</option></select></div><div id="incidentList"></div></div></article>
+    <article class="card"><div class="incident-detail" id="incidentDetail"></div></article>
+  </div>
+</section>
+<section class="page" id="page-range">
+  <div class="page-head"><div><div class="eyebrow">ISOLATED LAB ENVIRONMENT</div><h1 data-i18n="rangeTitle">Cyber Range topológia</h1><p data-i18n="rangeSubtitle">Hálózati eszközök, támadási útvonalak és biztonságos szimulációk vizualizációja.</p></div><span class="status green" data-i18n="isolatedLab">Elkülönített labor</span></div>
+  <div class="grid two-col"><article class="card"><div class="card-head"><div class="card-title" data-i18n="networkMap">Hálózati térkép</div><span class="subline">8 NODES · 7 LINKS</span></div><div class="topology" style="height:390px"><svg id="fullTopology" viewBox="0 0 700 390" aria-label="Cyber Range hálózati térkép"></svg></div><div class="card-body"><div class="toolbar"><span class="status green">● <span data-i18n="sensorOnline">Szenzor online</span></span><span class="status">LAB-NET / 10.0.0.0/16</span><span class="status amber" data-i18n="demoOnly">Szimulációs adatok</span></div></div></article><article class="card"><div class="card-head"><div class="card-title" data-i18n="nodeDetails">Csomópont részletei</div></div><div class="card-body" id="nodeDetails"><div class="eyebrow">SELECTED NODE</div><h2 style="font-size:21px" id="nodeName">dmz-web-01</h2><p class="muted" id="nodeDesc">DMZ webkiszolgáló · szimulált célrendszer</p><div class="detail-kv"><div class="kv"><small>IP ADDRESS</small><strong class="mono" id="nodeIp">10.0.1.15</strong></div><div class="kv"><small data-i18n="nodeState">Állapot</small><strong style="color:var(--green)" data-i18n="monitoredState">Felügyelt</strong></div><div class="kv"><small data-i18n="events24">Események / 24h</small><strong>142</strong></div></div><div style="margin-top:22px"><div class="section-title"><h3 data-i18n="availableScenarios">Elérhető forgatókönyvek</h3></div><div class="checklist"><label class="check"><input type="checkbox" checked> SSH brute-force szimuláció</label><label class="check"><input type="checkbox"> SQL injection tesztforgatókönyv</label><label class="check"><input type="checkbox"> Honeypot interakció</label><label class="check"><input type="checkbox"> SMB oldalirányú mozgás emuláció</label></div><p class="subline" style="margin-top:17px" data-i18n="rangeSafety">A forgatókönyvek csak elkülönített, engedélyezett laborban futtathatók.</p><button class="btn btn-primary" style="margin-top:8px" id="nodeSim" data-i18n="runNodeSim">Forgatókönyv kiválasztása</button></div></div></article></div>
+</section>
+<section class="page" id="page-mitre">
+  <div class="page-head"><div><div class="eyebrow">TACTICS · TECHNIQUES · EVIDENCE</div><h1>MITRE ATT&CK <span class="muted">// Tactical overview</span></h1><p data-i18n="mitreSub">A szimulált észlelések taktikákhoz és technikákhoz rendelése.</p></div><span class="status amber" data-i18n="exerciseData">Gyakorlati adatok</span></div>
+  <div class="grid two-col"><article class="card"><div class="card-head"><div class="card-title" data-i18n="tacticMatrix">Taktikai mátrix</div><span class="subline">10 TACTICS</span></div><div class="card-body"><div class="matrix" id="mitreMatrix"></div></div></article><article class="card"><div class="card-head"><div class="card-title" data-i18n="techDetails">Technikai találatok</div></div><div class="card-body"><div class="table-responsive"><table class="table"><thead><tr><th>ID</th><th data-i18n="technique">Technika</th><th data-i18n="evidence">Bizonyíték</th><th data-i18n="count">Találat</th></tr></thead><tbody><tr><td class="mono">T1110.001</td><td>Password Guessing</td><td>SSH authentication burst</td><td><span class="status red">2</span></td></tr><tr><td class="mono">T1068</td><td>Exploitation for Privilege Escalation</td><td>Process execution chain</td><td><span class="status red">2</span></td></tr><tr><td class="mono">T1190</td><td>Exploit Public-Facing Application</td><td>Web request anomaly</td><td><span class="status amber">1</span></td></tr><tr><td class="mono">T1048</td><td>Exfiltration Over Alternative Protocol</td><td>Egress traffic pattern</td><td><span class="status amber">1</span></td></tr><tr><td class="mono">T1021.002</td><td>SMB / Windows Admin Shares</td><td>East-west connection</td><td><span class="status amber">1</span></td></tr><tr><td class="mono">T1486</td><td>Data Encrypted for Impact</td><td>Ransomware emulation</td><td><span class="status red">1</span></td></tr></tbody></table></div><p class="subline" style="margin-top:12px" data-i18n="mitreNote">A technikák demonstrációs célú hozzárendelések; éles környezetben eseményszintű bizonyítékkal validálandók.</p></div></article></div>
+</section>
+<section class="page" id="page-telemetry">
+  <div class="page-head"><div><div class="eyebrow">EVENT STREAM · SENSOR HEALTH</div><h1 data-i18n="teleTitle">Telemetria és naplók</h1><p data-i18n="teleSub">Központi eseményfolyam és a labor szenzorainak állapota.</p></div><span class="status green" data-i18n="streamActive">Folyam aktív</span></div>
+  <div class="grid metrics"><article class="card"><div class="card-head"><span class="card-title">EVENTS / 24H</span></div><div class="card-body"><div class="metric">1,428</div><div class="subline" data-i18n="ingestedEvents">Beérkezett események</div></div></article><article class="card"><div class="card-head"><span class="card-title">IDS ALERTS</span></div><div class="card-body"><div class="metric">142</div><div class="subline" data-i18n="correlatedAlerts">Korrelált riasztások</div></div></article><article class="card"><div class="card-head"><span class="card-title">SENSOR HEALTH</span></div><div class="card-body"><div class="metric">100<small>%</small></div><div class="subline" data-i18n="allSensors">Minden szenzor elérhető</div></div></article><article class="card"><div class="card-head"><span class="card-title">INGEST LATENCY</span></div><div class="card-body"><div class="metric">184 <small>ms</small></div><div class="subline" data-i18n="medianLatency">Medián feldolgozási késleltetés</div></div></article><article class="card"><div class="card-head"><span class="card-title">BUFFER</span></div><div class="card-body"><div class="metric" id="teleBuffer">0</div><div class="subline" data-i18n="pendingEvents">Várakozó események</div></div></article></div>
+  <article class="card"><div class="card-head"><div class="card-title" data-i18n="eventStream">Eseményfolyam</div><button class="btn" id="exportLogs" data-i18n="exportCsv">Exportálás CSV-be</button></div><div class="card-body"><div class="toolbar"><input class="field search" id="logSearch" placeholder="Keresés forrás, host vagy esemény alapján…"><select class="field" id="logLevel"><option value="all" data-i18n="allLevels">Minden szint</option><option>CRITICAL</option><option>HIGH</option><option>INFO</option></select></div><div class="table-responsive"><table class="table"><thead><tr><th data-i18n="timestamp">Időbélyeg</th><th data-i18n="source">Forrás</th><th data-i18n="event">Esemény</th><th>HOST</th><th data-i18n="level">Szint</th></tr></thead><tbody id="logTable"></tbody></table></div></div></article>
+</section>
+<section class="page" id="page-ai">
+  <div class="page-head"><div><div class="eyebrow">AUGMENTED ANALYSIS · AUTOMATED RESPONSE</div><h1 data-i18n="aiTitle">AI-ügynökflotta & SOAR</h1><p data-i18n="aiSub">Specializált elemzőügynökök, magyarázható döntések és jóváhagyásvezérelt automatizálás.</p></div><span class="status green" data-i18n="agentsReady">4 ügynök készenlétben</span></div>
+  <div class="grid agent-grid" id="agentGrid"></div>
+  <div class="grid two-col" style="margin-top:16px"><article class="card"><div class="card-head"><div class="card-title" data-i18n="playbooks">SOAR playbookok</div><span class="subline">4 WORKFLOWS</span></div><div class="card-body"><div class="table-responsive"><table class="table"><thead><tr><th data-i18n="playbook">Playbook</th><th data-i18n="trigger">Kiváltó esemény</th><th data-i18n="approval">Jóváhagyás</th><th data-i18n="action">Művelet</th></tr></thead><tbody><tr><td>Alert Enrichment</td><td>New alert</td><td><span class="status green">Auto</span></td><td><button class="btn playbook-btn" data-playbook="Alert Enrichment" data-i18n="run">Futtatás</button></td></tr><tr><td>Containment & Forensics</td><td>Critical incident</td><td><span class="status amber" data-i18n="human">Emberi</span></td><td><button class="btn playbook-btn" data-playbook="Containment & Forensics" data-i18n="review">Felülvizsgálat</button></td></tr><tr><td>IOC Enrichment</td><td>New indicator</td><td><span class="status green">Auto</span></td><td><button class="btn playbook-btn" data-playbook="IOC Enrichment" data-i18n="run">Futtatás</button></td></tr><tr><td>NIS2 Report Draft</td><td>Significant incident</td><td><span class="status amber" data-i18n="human">Emberi</span></td><td><button class="btn playbook-btn" data-playbook="NIS2 Report Draft" data-i18n="review">Felülvizsgálat</button></td></tr></tbody></table></div></div></article><article class="card"><div class="card-head"><div class="card-title" data-i18n="decisionLog">AI döntési napló</div><span class="status" data-i18n="explainable">Magyarázható</span></div><div class="card-body"><div class="feed" id="aiFeed"><div class="feed-row"><span class="feed-time">17:16</span><div><strong>Threat Intel Agent</strong><p>SSH-kísérletek összefüggésének vizsgálata. Javaslat: incidens triázs.</p></div><span class="status amber">Review</span></div><div class="feed-row"><span class="feed-time">17:12</span><div><strong>Forensics Agent</strong><p>Folyamatindítás és kimenő kapcsolat időbeli korrelációja.</p></div><span class="status green">Done</span></div></div><p class="subline" style="margin-top:15px" data-i18n="humanOversight">A magas hatású beavatkozások emberi jóváhagyást igényelnek.</p></div></article></div>
+</section>
+<section class="page" id="page-nis2">
+  <div class="page-head"><div><div class="eyebrow">GOVERNANCE · RISK · REPORTING</div><h1 data-i18n="nisTitle">NIS2 jogszabályi Hub</h1><p data-i18n="nisSub">Megfelelőségi állapot, incidensjelentési folyamat és auditálható bizonyítékok.</p></div><span class="status amber" data-i18n="legalDemo">Oktatási demonstráció</span></div>
+  <div class="grid two-col"><article class="card"><div class="card-head"><div class="card-title" data-i18n="complianceStatus">Megfelelőségi áttekintés</div><span class="subline">SAMPLE DATA</span></div><div class="card-body"><div class="compliance-top"><div class="progress-ring"><strong>78%</strong></div><div><h2 style="font-size:17px;margin:0 0 5px" data-i18n="complianceProgress">Dokumentált kontrollok</h2><p class="muted" style="font-size:11px;margin:0" data-i18n="complianceDesc">A mintaérték kizárólag a felület bemutatását szolgálja.</p><div class="bar" style="width:190px"><i style="width:78%"></i></div></div></div><div class="checklist" style="margin-top:23px"><label class="check"><input type="checkbox" checked> <span data-i18n="req1">Incidenskezelési eljárás dokumentálva</span></label><label class="check"><input type="checkbox" checked> <span data-i18n="req2">Üzletmenet-folytonossági terv felülvizsgálva</span></label><label class="check"><input type="checkbox" checked> <span data-i18n="req3">Hozzáférés-kezelési kontrollok kijelölve</span></label><label class="check"><input type="checkbox"> <span data-i18n="req4">Beszállítói kockázati bizonyíték frissítendő</span></label><label class="check"><input type="checkbox"> <span data-i18n="req5">Incidensjelentési próba dokumentálása</span></label></div></div></article><article class="card"><div class="card-head"><div class="card-title" data-i18n="reportingTimeline">Incidensjelentési munkafolyamat</div></div><div class="card-body"><div class="timeline" style="display:block;margin-top:5px"><div class="feed-row"><span class="incident-num">01</span><div><strong data-i18n="stage1">Észlelés és osztályozás</strong><p data-i18n="stage1d">Esemény validálása, súlyosság és érintettség megállapítása.</p></div><span class="status green" data-i18n="complete">Kész</span></div><div class="feed-row"><span class="incident-num">02</span><div><strong data-i18n="stage2">Korai figyelmeztetés</strong><p data-i18n="stage2d">Az alkalmazandó jogi határidő és címzett ellenőrzése.</p></div><span class="status amber" data-i18n="review">Ellenőrzés</span></div><div class="feed-row"><span class="incident-num">03</span><div><strong data-i18n="stage3">Részletes incidensjelentés</strong><p data-i18n="stage3d">Hatás, kiváltó ok, válaszintézkedések és bizonyítékok.</p></div><span class="status">Tervezett</span></div><div class="feed-row"><span class="incident-num">04</span><div><strong data-i18n="stage4">Zárójelentés és tanulságok</strong><p data-i18n="stage4d">Helyreállítás, kontrollfejlesztés és utókövetés.</p></div><span class="status">Tervezett</span></div></div><p class="subline" style="margin-top:14px" data-i18n="legalDisclaimer">A tényleges határidőket és kötelezettségeket a hatályos magyar jogszabályok és az illetékes hatósági útmutatók alapján kell ellenőrizni.</p><button class="btn btn-primary" style="margin-top:12px" id="draftReport" data-i18n="draftReport">Jelentéstervezet készítése</button></div></article></div>
+  <article class="card" style="margin-top:16px"><div class="card-head"><div class="card-title" data-i18n="evidenceRegister">Bizonyíték-nyilvántartás</div><button class="btn" id="exportEvidence" data-i18n="exportCsv">Exportálás CSV-be</button></div><div class="card-body"><div class="table-responsive"><table class="table"><thead><tr><th>ID</th><th data-i18n="evidence">Bizonyíték</th><th data-i18n="owner">Felelős</th><th data-i18n="reviewDate">Felülvizsgálat</th><th data-i18n="state">Állapot</th></tr></thead><tbody><tr><td class="mono">EV-001</td><td>Incident Response Procedure</td><td>SOC Lead</td><td>2026-10-01</td><td><span class="status green">Verified</span></td></tr><tr><td class="mono">EV-002</td><td>Access Control Review</td><td>IT Operations</td><td>2026-09-28</td><td><span class="status green">Verified</span></td></tr><tr><td class="mono">EV-003</td><td>Supplier Risk Assessment</td><td>Risk Owner</td><td>2026-08-15</td><td><span class="status amber">Review</span></td></tr></tbody></table></div></div></article>
+</section>
+<section class="page" id="page-reports">
+  <div class="page-head"><div><div class="eyebrow">MEASUREMENT · ASSURANCE · IMPROVEMENT</div><h1 data-i18n="reportsTitle">Jelentések és teljesítmény</h1><p data-i18n="reportsSub">Műveleti mutatók, eseménytrendek és exportálható demójelentések.</p></div><span class="status" data-i18n="period">IDŐSZAK · UTOLSÓ 24 ÓRA</span></div>
+  <div class="grid two-col"><article class="card"><div class="card-head"><div class="card-title" data-i18n="alertTrend">Riasztási trend</div><span class="subline">LAST 12 HOURS</span></div><div class="card-body"><svg viewBox="0 0 600 230" style="width:100%;height:auto" aria-label="Riasztási trend"><g stroke="#20364b" stroke-width="1"><path d="M40 30H580M40 75H580M40 120H580M40 165H580M40 210H580"/></g><g fill="#8298ac" font-size="10"><text x="4" y="33">40</text><text x="4" y="78">30</text><text x="4" y="123">20</text><text x="4" y="168">10</text><text x="13" y="213">0</text></g><path d="M40 190 L85 175 L130 182 L175 140 L220 154 L265 112 L310 135 L355 83 L400 100 L445 55 L490 88 L535 40 L580 67" fill="none" stroke="#80bfe8" stroke-width="2.5"/><path d="M40 190 L85 175 L130 182 L175 140 L220 154 L265 112 L310 135 L355 83 L400 100 L445 55 L490 88 L535 40 L580 67 L580 210 L40 210Z" fill="#80bfe8" opacity=".08"/><g fill="#91a5b9" font-size="9"><text x="40" y="226">06:00</text><text x="175" y="226">09:00</text><text x="310" y="226">12:00</text><text x="445" y="226">15:00</text><text x="550" y="226">18:00</text></g></svg></div></article><article class="card"><div class="card-head"><div class="card-title" data-i18n="kpiSummary">KPI összefoglaló</div></div><div class="card-body"><div class="feed"><div class="feed-row"><span class="feed-time">01</span><div><strong>MTTD · 4.2 min</strong><p data-i18n="mttdTarget">Célérték: 15 percen belül</p></div><span class="status green">Within SLA</span></div><div class="feed-row"><span class="feed-time">02</span><div><strong>MTTR · 18.5 min</strong><p data-i18n="mttrTarget">Célérték: 60 percen belül</p></div><span class="status green">Within SLA</span></div><div class="feed-row"><span class="feed-time">03</span><div><strong>Mandatory training · 96%</strong><p data-i18n="trainingTarget">Célérték: legalább 95%</p></div><span class="status green">Target met</span></div><div class="feed-row"><span class="feed-time">04</span><div><strong>Sensor availability · 100%</strong><p data-i18n="sensorTarget">Célérték: 99.5%</p></div><span class="status green">Target met</span></div></div><button class="btn btn-primary" style="margin-top:16px" id="exportReport" data-i18n="downloadReport">Jelentés exportálása</button></div></article></div>
+  <article class="card" style="margin-top:16px"><div class="card-head"><div class="card-title" data-i18n="reportCatalog">Jelentéskatalógus</div></div><div class="card-body"><div class="table-responsive"><table class="table"><thead><tr><th data-i18n="reportName">Jelentés neve</th><th data-i18n="period">Időszak</th><th data-i18n="owner">Felelős</th><th data-i18n="state">Állapot</th><th></th></tr></thead><tbody><tr><td>Executive SOC Summary</td><td>24h</td><td>SOC Lead</td><td><span class="status green">Ready</span></td><td><button class="btn export-single" data-name="Executive SOC Summary" data-i18n="export">Export</button></td></tr><tr><td>Incident Evidence Pack</td><td>Current exercise</td><td>Incident Analyst</td><td><span class="status amber">Draft</span></td><td><button class="btn export-single" data-name="Incident Evidence Pack" data-i18n="export">Export</button></td></tr><tr><td>Compliance Snapshot</td><td>Current review</td><td>Compliance Lead</td><td><span class="status green">Ready</span></td><td><button class="btn export-single" data-name="Compliance Snapshot" data-i18n="export">Export</button></td></tr></tbody></table></div></div></article>
+</section>
+<section class="page" id="page-members">
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">HUMAN INTELLIGENCE · ROLES · CAPABILITIES</div>
+      <h1 data-i18n="membersTitle">Alkalmazottak | Members</h1>
+      <p data-i18n="membersSub">A kiberbiztonsági műveleti központ és laboratórium személyi állománya és feladatkörei.</p>
+    </div>
+    <div class="head-meta">
+      <span data-i18n="staffStatus">SZEMÉLYI ÁLLOMÁNY</span>
+      <strong>● <span id="membersCountBadge">31</span> <span data-i18n="activeMembers">Fő aktív</span></strong>
+      <span class="mono">STAFFING v6.0</span>
+    </div>
+  </div>
+
+  <article class="card" style="margin-bottom:16px">
+    <div class="card-body" style="padding:14px 16px">
+      <div class="members-toolbar">
+        <div class="members-search-box">
+          <input class="field search" id="memberSearch" placeholder="Keresés név vagy beosztás alapján…" data-i18n-placeholder="searchMembers">
+        </div>
+        <div class="members-filter-group">
+          <select class="field" id="pillarFilter">
+            <option value="all" data-i18n="allPillars">Minden pillér (31)</option>
+            <option value="leadership" data-i18n="filterLeadership">Vezetés (2)</option>
+            <option value="siem" data-i18n="filterSiem">SIEM Pillér (15)</option>
+            <option value="soar" data-i18n="filterSoar">SOAR Pillér (14)</option>
+          </select>
+          <select class="field" id="teamFilter">
+            <option value="all" data-i18n="allTeams">Minden alcsapat</option>
+            <option value="wazuh">Wazuh / Detection (5)</option>
+            <option value="misp">MISP / Threat Intel (6)</option>
+            <option value="linux">Linux Server / Target (2)</option>
+            <option value="shuffle">Shuffle / SOAR (6)</option>
+            <option value="dfir">DFIR-IRIS / Incident (6)</option>
+          </select>
+        </div>
+        <div class="members-view-actions">
+          <div class="view-toggle-pills">
+            <button class="pill-btn active" id="viewOrgBtn" data-view="org"><span class="ico">⊞</span> <span data-i18n="viewOrg">Szervezeti ábra</span></button>
+            <button class="pill-btn" id="viewTableBtn" data-view="table"><span class="ico">▤</span> <span data-i18n="viewTable">Beosztási tábla</span></button>
+          </div>
+          <button class="btn btn-primary" id="exportMembersBtn"><span class="ico">📥</span> <span data-i18n="exportCsv">Exportálás CSV-be</span></button>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <div id="membersOrgContainer">
+    <!-- Hierarchical Org Chart -->
+  </div>
+
+  <div id="membersTableContainer" style="display:none">
+    <article class="card staffing-matrix-card">
+      <div class="card-head">
+        <div>
+          <div class="card-title" data-i18n="excelViewTitle">Hivatalos Szervezeti Beosztás · Staffing Table v6</div>
+          <span class="subline" data-i18n="excelViewSub">Óbudai Egyetem Kiberbiztonsági Műveleti Központ struktúrája (.xlsx alapján)</span>
+        </div>
+        <span class="status green">VERIFIED SPREADSHEET</span>
+      </div>
+      <div class="card-body" style="padding:0">
+        <div class="table-responsive">
+          <div id="excelMatrixContent">
+            <!-- Rendered by renderMembersTable() -->
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="page" id="page-team">
+  <div class="page-head"><div><div class="eyebrow">PEOPLE · PURPOSE · PRINCIPLES</div><h1 data-i18n="teamTitle">Stáblista & manifesztum</h1><p data-i18n="teamSub">Egy egyetemi projekt, amely a technológiát, a kutatást és a felelős védekezést kapcsolja össze.</p></div><span class="status">ÓE · 2026</span></div>
+  <article class="card" style="padding:clamp(22px,5vw,48px);margin-bottom:16px;position:relative;overflow:hidden"><div class="eyebrow">OUR MANIFESTO</div><p class="manifesto" data-i18n="manifesto">„A kiberbiztonság nem egyetlen fal. <em>Hanem az emberek, a folyamatok és a technológia közös figyelme.</em>”</p><p class="muted" style="max-width:650px;font-size:12px" data-i18n="manifestoSub">A Tripartite Fusion Architecture egyetlen tanulható, vizsgálható környezetben kapcsolja össze a biztonsági műveleteket, a támadási szimulációkat és a mesterséges intelligenciával támogatott elemzést.</p></article>
+  <div class="section-title"><h3 data-i18n="teamMembers">Projektcsapat</h3><span data-i18n="teamReplace">A minta neveket cseréljétek a tényleges csapattagokra.</span></div>
+  <div style="margin-bottom:14px"><button class="btn btn-primary" data-go="members"><span class="ico">👥</span> <span data-i18n="viewMembersBtn">Részletes beosztási névsor & szervezeti ábra megnyitása ↗</span></button></div>
+  <div class="grid team-grid"><article class="card member"><div class="avatar">CS</div><h3>Csajbók Attila Csaba</h3><p data-i18n="roleAnalyst">Incidenselemző · Mintaadat</p></article><article class="card member"><div class="avatar">SOC</div><h3>SOC Operations</h3><p data-i18n="roleOps">Műveleti koordináció</p></article><article class="card member"><div class="avatar">AI</div><h3>AI & Automation</h3><p data-i18n="roleAi">AI-ügynökök és SOAR</p></article><article class="card member"><div class="avatar">GRC</div><h3>Governance & Risk</h3><p data-i18n="roleGrc">Megfelelőség és kockázat</p></article></div>
+  <div class="grid two-col" style="margin-top:16px"><article class="card"><div class="card-head"><div class="card-title" data-i18n="architecture">Architekturális alapelv</div></div><div class="card-body"><div class="feed"><div class="feed-row"><span class="incident-num">01</span><div><strong>SOC</strong><p data-i18n="archSoc">Észlelés, triázs, kivizsgálás és válasz.</p></div></div><div class="feed-row"><span class="incident-num">02</span><div><strong>CYBER RANGE</strong><p data-i18n="archRange">Kontrollált, izolált szimuláció és validáció.</p></div></div><div class="feed-row"><span class="incident-num">03</span><div><strong>AI AGENTS</strong><p data-i18n="archAi">Elemzési támogatás, korreláció és automatizálás.</p></div></div></div></div></article><article class="card"><div class="card-head"><div class="card-title" data-i18n="projectNote">Projektinformáció</div></div><div class="card-body"><p class="muted" style="font-size:12px" data-i18n="projectNoteText">Oktatási célú SOC-portál prototípus az Óbudai Egyetem Biztonságtudományi és Kibervédelmi Intézete számára.</p><div class="detail-kv"><div class="kv"><small>ARCHITECTURE</small><strong>Tripartite Fusion</strong></div><div class="kv"><small>INTERFACE</small><strong>HU / EN</strong></div><div class="kv"><small>MODE</small><strong>Demo / Lab</strong></div></div></div></article></div>
+</section>
+<footer class="footer"><span>ÓBUDAI EGYETEM · <span data-i18n="footerInstitute">Biztonságtudományi és Kibervédelmi Intézet</span></span><span>CYBERNETIC OPERATIONS MAINFRAME</span><span>SOC × RANGE × AI</span></footer>
+</div>
+</main>
+</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<button class="back-to-top" id="backToTopBtn" aria-label="Vissza a tetejére">↑</button>
+<nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Gyorsnavigáció">
+  <button data-go="warroom" class="active"><span class="ico">◈</span><span data-i18n="navWarShort">Központ</span></button>
+  <button data-go="incidents"><span class="ico">◎</span><span data-i18n="navIncShort">Incidensek</span></button>
+  <button data-go="members"><span class="ico">👥</span><span data-i18n="navMembersShort">Csapat</span></button>
+  <button id="mobileNavMenuBtn" aria-label="Menü"><span class="ico">☰</span><span data-i18n="navMenuShort">Menü</span></button>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const translations={
+hu:{
+institute:"Biztonságtudományi és Kibervédelmi Intézet",workspace:"Munkaterület",navWar:"Műveleti központ",navInc:"Incidenskezelés",navRange:"Cyber Range topológia",navTele:"Telemetria & naplók",navReports:"Jelentések",navTeam:"Stáblista & manifesztum",navMembers:"Alkalmazottak",navWarShort:"Központ",navIncShort:"Incidensek",navMembersShort:"Csapat",navMenuShort:"Menü",membersTitle:"Alkalmazottak | Members",membersSub:"A kiberbiztonsági műveleti központ és laboratórium személyi állománya és feladatkörei.",staffStatus:"SZEMÉLYI ÁLLOMÁNY",activeMembers:"Fő aktív",searchMembers:"Keresés név vagy beosztás alapján…",allPillars:"Minden pillér",filterLeadership:"Vezetés",filterSiem:"SIEM Pillér",filterSoar:"SOAR Pillér",allTeams:"Minden alcsapat",viewOrg:"Szervezeti ábra",viewTable:"Beosztási tábla",excelViewTitle:"Hivatalos Szervezeti Beosztás · Staffing Table v6",excelViewSub:"Óbudai Egyetem Kiberbiztonsági Műveleti Központ struktúrája",viewMembersBtn:"Részletes beosztási névsor & szervezeti ábra megnyitása ↗",backToList:"Vissza az incidenslistához",backToWar:"Vissza a központba",systemOnline:"Rendszer online",breadcrumb:"Óbudai Egyetem / Kiberbiztonsági labor",rangeReady:"Cyber Range készenlét",warTitle:'Műveleti központ <span class="muted">// War Room</span>',warSub:"Helyzetkép, fenyegetettség és incidenskezelés egyetlen munkafelületen.",lastSync:"UTOLSÓ SZINKRONIZÁLÁS",synced:"Szinkronizálva",heroTitle:'A biztonság nem egy termék.<br><span>Hanem egy folyamat.</span>',heroSub:"SOC, Cyber Range és AI-ügynökök egységes műveleti környezetben — észlelés, elemzés, döntés és reagálás.",openIncidents:"Incidensek megnyitása ↗",openRange:"Cyber Range felfedezése",threatLevel:"DEFCON készültség",highThreat:"Magas / súlyos támadás",threatIndex:"Fenyegetettségi index",meanDetect:"Átlagos észlelési idő",meanRespond:"Átlagos elhárítási idő",activeIncidents:"Aktív incidensek",updatedDemo:"Demóadatok · frissített nézet",rangeNodes:"Cyber Range csomópontok",monitored:"3 felügyelt · 1 428 napló",healthy:"Szenzorok aktívak",attackDeck:"Támadási vektor vezérlő",simDesc:"Cyber Range · elkülönített szimulációs környezet",simReady:"Készenlét",sshDesc:"Root jogosultságkiterjesztés",sqlDesc:"Adatbázis-exfiltráció",cowrieDesc:"Interakció és botnet-triázs",lockDesc:"SMB oldalirányú terjedés",selectedVector:"Kiválasztva: SSH brute force + CVE",runSim:"Szimuláció indítása",liveTelemetry:"Élő telemetria-folyam",ingestWatch:"Nyitott figyelők · API ingest",live:"Élő",buffer:"Puffer",topology:"Cyber Range topológia",topologySub:"Szimulált hálózati környezet · kattintson egy csomópontra",details:"Részletek ↗",incidentQueue:"Incidenssor",incidentQueueSub:"Prioritás szerinti áttekintés",allIncidents:"Összes incidens ↗",incTitle:"Incidenskivizsgálási munkaállomás",incSub:"Incidens-életciklus, bizonyítékok és intézkedések egyetlen konzolon.",demoEnvironment:"SZIMULÁCIÓS KÖRNYEZET",incidentList:"Incidenslista",searchIncidents:"Keresés incidensek között…",allSeverity:"Minden súlyosság",allStates:"Minden állapot",rangeTitle:"Cyber Range topológia",rangeSubtitle:"Hálózati eszközök, támadási útvonalak és biztonságos szimulációk vizualizációja.",isolatedLab:"Elkülönített labor",networkMap:"Hálózati térkép",sensorOnline:"Szenzor online",demoOnly:"Szimulációs adatok",nodeDetails:"Csomópont részletei",nodeState:"Állapot",monitoredState:"Felügyelt",events24:"Események / 24h",availableScenarios:"Elérhető forgatókönyvek",rangeSafety:"A forgatókönyvek csak elkülönített, engedélyezett laborban futtathatók.",runNodeSim:"Forgatókönyv kiválasztása",mitreSub:"A szimulált észlelések taktikákhoz és technikákhoz rendelése.",exerciseData:"Gyakorlati adatok",tacticMatrix:"Taktikai mátrix",techDetails:"Technikai találatok",technique:"Technika",evidence:"Bizonyíték",count:"Találat",mitreNote:"A technikák demonstrációs célú hozzárendelések; éles környezetben eseményszintű bizonyítékkal validálandók.",teleTitle:"Telemetria és naplók",teleSub:"Központi eseményfolyam és a labor szenzorainak állapota.",streamActive:"Folyam aktív",ingestedEvents:"Beérkezett események",correlatedAlerts:"Korrelált riasztások",allSensors:"Minden szenzor elérhető",medianLatency:"Medián feldolgozási késleltetés",pendingEvents:"Várakozó események",eventStream:"Eseményfolyam",exportCsv:"Exportálás CSV-be",allLevels:"Minden szint",timestamp:"Időbélyeg",source:"Forrás",event:"Esemény",level:"Szint",aiTitle:"AI-ügynökflotta & SOAR",aiSub:"Specializált elemzőügynökök, magyarázható döntések és jóváhagyásvezérelt automatizálás.",agentsReady:"4 ügynök készenlétben",playbooks:"SOAR playbookok",playbook:"Playbook",trigger:"Kiváltó esemény",approval:"Jóváhagyás",action:"Művelet",run:"Futtatás",human:"Emberi",review:"Felülvizsgálat",decisionLog:"AI döntési napló",explainable:"Magyarázható",humanOversight:"A magas hatású beavatkozások emberi jóváhagyást igényelnek.",nisTitle:"NIS2 jogszabályi Hub",nisSub:"Megfelelőségi állapot, incidensjelentési folyamat és auditálható bizonyítékok.",legalDemo:"Oktatási demonstráció",complianceStatus:"Megfelelőségi áttekintés",complianceProgress:"Dokumentált kontrollok",complianceDesc:"A mintaérték kizárólag a felület bemutatását szolgálja.",req1:"Incidenskezelési eljárás dokumentálva",req2:"Üzletmenet-folytonossági terv felülvizsgálva",req3:"Hozzáférés-kezelési kontrollok kijelölve",req4:"Beszállítói kockázati bizonyíték frissítendő",req5:"Incidensjelentési próba dokumentálása",reportingTimeline:"Incidensjelentési munkafolyamat",stage1:"Észlelés és osztályozás",stage1d:"Esemény validálása, súlyosság és érintettség megállapítása.",stage2:"Korai figyelmeztetés",stage2d:"Az alkalmazandó jogi határidő és címzett ellenőrzése.",stage3:"Részletes incidensjelentés",stage3d:"Hatás, kiváltó ok, válaszintézkedések és bizonyítékok.",stage4:"Zárójelentés és tanulságok",stage4d:"Helyreállítás, kontrollfejlesztés és utókövetés.",complete:"Kész",legalDisclaimer:"A tényleges határidőket és kötelezettségeket a hatályos magyar jogszabályok és az illetékes hatósági útmutatók alapján kell ellenőrizni.",draftReport:"Jelentéstervezet készítése",evidenceRegister:"Bizonyíték-nyilvántartás",owner:"Felelős",reviewDate:"Felülvizsgálat",state:"Állapot",reportsTitle:"Jelentések és teljesítmény",reportsSub:"Műveleti mutatók, eseménytrendek és exportálható demójelentések.",period:"IDŐSZAK · UTOLSÓ 24 ÓRA",alertTrend:"Riasztási trend",kpiSummary:"KPI összefoglaló",mttdTarget:"Célérték: 15 percen belül",mttrTarget:"Célérték: 60 percen belül",trainingTarget:"Célérték: legalább 95%",sensorTarget:"Célérték: 99.5%",downloadReport:"Jelentés exportálása",reportCatalog:"Jelentéskatalógus",reportName:"Jelentés neve",export:"Export",teamTitle:"Stáblista & manifesztum",teamSub:"Egy egyetemi projekt, amely a technológiát, a kutatást és a felelős védekezést kapcsolja össze.",manifesto:"„A kiberbiztonság nem egyetlen fal. <em>Hanem az emberek, a folyamatok és a technológia közös figyelme.</em>”",manifestoSub:"A Tripartite Fusion Architecture egyetlen tanulható, vizsgálható környezetben kapcsolja össze a biztonsági műveleteket, a támadási szimulációkat és a mesterséges intelligenciával támogatott elemzést.",teamMembers:"Projektcsapat",teamReplace:"A minta neveket cseréljétek a tényleges csapattagokra.",roleAnalyst:"Incidenselemző · Mintaadat",roleOps:"Műveleti koordináció",roleAi:"AI-ügynökök és SOAR",roleGrc:"Megfelelőség és kockázat",architecture:"Architekturális alapelv",archSoc:"Észlelés, triázs, kivizsgálás és válasz.",archRange:"Kontrollált, izolált szimuláció és validáció.",archAi:"Elemzési támogatás, korreláció és automatizálás.",projectNote:"Projektinformáció",projectNoteText:"Oktatási célú SOC-portál prototípus az Óbudai Egyetem Biztonságtudományi és Kibervédelmi Intézete számára.",footerInstitute:"Biztonságtudományi és Kibervédelmi Intézet"
+},
+en:{
+institute:"Institute of Security Science and Cyber Defense",workspace:"Workspace",navWar:"Operations center",navInc:"Incident response",navRange:"Cyber Range topology",navTele:"Telemetry & logs",navReports:"Reports",navTeam:"Team & manifesto",navMembers:"Members",navWarShort:"War Room",navIncShort:"Incidents",navMembersShort:"Members",navMenuShort:"Menu",membersTitle:"Members | Staffing",membersSub:"Operational personnel, organizational hierarchy, and assigned responsibilities.",staffStatus:"STAFFING ROSTER",activeMembers:"Active personnel",searchMembers:"Search by name or role…",allPillars:"All divisions",filterLeadership:"Leadership",filterSiem:"SIEM Division",filterSoar:"SOAR Division",allTeams:"All subteams",viewOrg:"Org Chart",viewTable:"Staffing Table",excelViewTitle:"Official Staffing Table · v6.0",excelViewSub:"Structure of the Óbuda University Cybersecurity Operations Center",viewMembersBtn:"Open full staffing directory & org chart ↗",backToList:"Back to incident list",backToWar:"Back to War Room",systemOnline:"System online",breadcrumb:"Óbuda University / Cybersecurity lab",rangeReady:"Cyber Range ready",warTitle:'Operations center <span class="muted">// War Room</span>',warSub:"Situational awareness, threat posture and incident response in one workspace.",lastSync:"LAST SYNCHRONIZATION",synced:"Synchronized",heroTitle:'Security is not a product.<br><span>It is a process.</span>',heroSub:"SOC, Cyber Range and AI agents in one operational environment — detect, analyze, decide and respond.",openIncidents:"Open incidents ↗",openRange:"Explore Cyber Range",threatLevel:"DEFCON readiness",highThreat:"High / severe threat",threatIndex:"Threat index",meanDetect:"Mean time to detect",meanRespond:"Mean time to respond",activeIncidents:"Active incidents",updatedDemo:"Demo data · refreshed view",rangeNodes:"Cyber Range nodes",monitored:"3 monitored · 1,428 logs",healthy:"Sensors active",attackDeck:"Attack vector controller",simDesc:"Cyber Range · isolated simulation environment",simReady:"Standby",sshDesc:"Root privilege escalation",sqlDesc:"Database exfiltration",cowrieDesc:"Interaction and botnet triage",lockDesc:"SMB lateral movement",selectedVector:"Selected: SSH brute force + CVE",runSim:"Launch simulation",liveTelemetry:"Live telemetry stream",ingestWatch:"Open watchers · API ingest",live:"Live",buffer:"Buffer",topology:"Cyber Range topology",topologySub:"Simulated network · select a node",details:"Details ↗",incidentQueue:"Incident queue",incidentQueueSub:"Prioritized overview",allIncidents:"All incidents ↗",incTitle:"Incident investigation workspace",incSub:"Incident lifecycle, evidence and response actions in one console.",demoEnvironment:"SIMULATION ENVIRONMENT",incidentList:"Incident list",searchIncidents:"Search incidents…",allSeverity:"All severities",allStates:"All states",rangeTitle:"Cyber Range topology",rangeSubtitle:"Visualization of network assets, attack paths and safe simulations.",isolatedLab:"Isolated lab",networkMap:"Network map",sensorOnline:"Sensor online",demoOnly:"Simulation data",nodeDetails:"Node details",nodeState:"State",monitoredState:"Monitored",events24:"Events / 24h",availableScenarios:"Available scenarios",rangeSafety:"Scenarios must run only in an isolated, authorized lab.",runNodeSim:"Select scenario",mitreSub:"Mapping simulated detections to tactics and techniques.",exerciseData:"Exercise data",tacticMatrix:"Tactical matrix",techDetails:"Technique detections",technique:"Technique",evidence:"Evidence",count:"Hits",mitreNote:"Technique mappings are illustrative and should be validated against event-level evidence in production.",teleTitle:"Telemetry & logs",teleSub:"Central event stream and laboratory sensor health.",streamActive:"Stream active",ingestedEvents:"Ingested events",correlatedAlerts:"Correlated alerts",allSensors:"All sensors available",medianLatency:"Median processing latency",pendingEvents:"Pending events",eventStream:"Event stream",exportCsv:"Export CSV",allLevels:"All levels",timestamp:"Timestamp",source:"Source",event:"Event",level:"Level",aiTitle:"AI agent fleet & SOAR",aiSub:"Specialized analysis agents, explainable decisions and approval-gated automation.",agentsReady:"4 agents ready",playbooks:"SOAR playbooks",playbook:"Playbook",trigger:"Trigger",approval:"Approval",action:"Action",run:"Run",human:"Human",review:"Review",decisionLog:"AI decision log",explainable:"Explainable",humanOversight:"High-impact actions require human approval.",nisTitle:"NIS2 compliance hub",nisSub:"Compliance posture, incident reporting workflow and auditable evidence.",legalDemo:"Educational demo",complianceStatus:"Compliance overview",complianceProgress:"Documented controls",complianceDesc:"This sample value is for interface demonstration only.",req1:"Incident response procedure documented",req2:"Business continuity plan reviewed",req3:"Access management controls assigned",req4:"Supplier risk evidence needs updating",req5:"Incident reporting exercise documented",reportingTimeline:"Incident reporting workflow",stage1:"Detection and classification",stage1d:"Validate the event and establish severity and impact.",stage2:"Early warning",stage2d:"Verify the applicable legal deadline and recipient.",stage3:"Detailed incident notification",stage3d:"Impact, root cause, response measures and evidence.",stage4:"Final report and lessons learned",stage4d:"Recovery, control improvement and follow-up.",complete:"Complete",legalDisclaimer:"Actual deadlines and obligations must be checked against current Hungarian legislation and competent-authority guidance.",draftReport:"Create report draft",evidenceRegister:"Evidence register",owner:"Owner",reviewDate:"Review date",state:"State",reportsTitle:"Reports & performance",reportsSub:"Operational metrics, event trends and exportable demo reports.",period:"PERIOD · LAST 24 HOURS",alertTrend:"Alert trend",kpiSummary:"KPI summary",mttdTarget:"Target: under 15 minutes",mttrTarget:"Target: under 60 minutes",trainingTarget:"Target: at least 95%",sensorTarget:"Target: 99.5%",downloadReport:"Export report",reportCatalog:"Report catalog",reportName:"Report name",export:"Export",teamTitle:"Team & manifesto",teamSub:"A university project connecting technology, research and responsible defense.",manifesto:"“Cybersecurity is not a single wall. <em>It is the shared vigilance of people, processes and technology.</em>”",manifestoSub:"The Tripartite Fusion Architecture brings security operations, attack simulation and AI-assisted analysis into one observable learning environment.",teamMembers:"Project team",teamReplace:"Replace sample entries with the actual team members.",roleAnalyst:"Incident analyst · Sample",roleOps:"Operations coordination",roleAi:"AI agents and SOAR",roleGrc:"Compliance and risk",architecture:"Architectural principle",archSoc:"Detection, triage, investigation and response.",archRange:"Controlled, isolated simulation and validation.",archAi:"Analytical support, correlation and automation.",projectNote:"Project information",projectNoteText:"Educational SOC portal prototype for Óbuda University’s Institute of Security Science and Cyber Defense.",footerInstitute:"Institute of Security Science and Cyber Defense"}
+};
+const incidents=[
+{id:1,severity:"CRITICAL",state:"investigating",title:"SSH Brute-Force & CVE-2024-38077 Root Privilege Escalation",host:"range-gw-01",time:"16:59",ip:"10.0.1.15",source:"194.26.29.114",count:142,context:"Suricata IDS generated 142 alerts for high-rate SSH credential brute-force attempts. Successful authentication was followed by simulated payload retrieval and privilege escalation.",techs:["T1110.001","T1068"],owner:"Csajbók Attila Csaba [M5Y3OG]"},
+{id:2,severity:"HIGH",state:"triaged",title:"SQL Injection Data Exfiltration against Student Portal",host:"range-gw-01",time:"16:19",ip:"10.0.1.15",source:"10.0.8.24",count:36,context:"A simulated web application received suspicious query patterns followed by anomalous database access and an outbound data-transfer pattern.",techs:["T1190","T1048"],owner:"SOC Analyst"},
+{id:3,severity:"MEDIUM",state:"contained",title:"Cowrie Honeypot Interaction: Automated Botnet Triage",host:"honeypot-cowrie-01",time:"15:34",ip:"10.0.99.10",source:"185.220.101.7",count:18,context:"The Cowrie honeypot recorded an automated session. Commands and session metadata are retained as exercise evidence for analyst triage.",techs:["T1059.004"],owner:"Threat Intelligence Agent"},
+{id:4,severity:"CRITICAL",state:"new",title:"LockBit 3.0 Ransomware Emulation & SMB Lateral Spread",host:"srv-web-dmz",time:"17:19",ip:"10.0.3.21",source:"10.0.4.33",count:9,context:"A controlled ransomware emulation produced simulated SMB lateral-movement events toward the backup-vault segment. No real encryption is performed by this interface.",techs:["T1021.002","T1486"],owner:"Incident Response"}
+];
+const logs=[
+{time:"17:19:42",source:"Suricata IDS",event:"SSH authentication burst · 142 alerts",host:"range-gw-01",level:"CRITICAL"},
+{time:"17:18:06",source:"SOAR Engine",event:"Alert enrichment playbook queued",host:"soc-orchestrator",level:"INFO"},
+{time:"17:16:51",source:"Cowrie Sensor",event:"Honeypot session closed",host:"honeypot-cowrie-01",level:"INFO"},
+{time:"17:14:33",source:"Web Sensor",event:"Suspicious SQL query pattern",host:"dmz-web-01",level:"HIGH"},
+{time:"17:11:08",source:"EDR Simulator",event:"SMB east-west connection detected",host:"ws-workstation-03",level:"HIGH"},
+{time:"17:09:24",source:"Range Monitor",event:"Node heartbeat received",host:"backup-vault-01",level:"INFO"},
+{time:"17:05:12",source:"Suricata IDS",event:"Outbound traffic anomaly",host:"srv-finance-db",level:"HIGH"},
+{time:"16:59:40",source:"Auth Monitor",event:"Repeated SSH login failures",host:"range-gw-01",level:"CRITICAL"}
+];
+const tactics=[["TA0001","Initial Access",2],["TA0002","Execution",1],["TA0003","Persistence",0],["TA0004","Privilege Escalation",1],["TA0005","Defense Evasion",0],["TA0006","Credential Access",1],["TA0007","Discovery",0],["TA0008","Lateral Movement",1],["TA0009","Collection",0],["TA0010","Exfiltration",1]];
+const nodes=[["Internet","203.0.113.10","External network"],["dmz-web-01","10.0.1.15","DMZ web server"],["range-gw-01","10.0.1.1","Range gateway / sensor"],["srv-finance-db","10.0.2.20","Finance database"],["ws-workstation-03","10.0.3.33","Workstation"],["honeypot-cowrie-01","10.0.99.10","Cowrie honeypot"],["backup-vault-01","10.0.4.10","Backup vault"],["srv-app","10.0.2.12","Application server"]];
+const agents=[["◉","Triage Agent","Alert prioritization and correlation",92],["⌕","Forensics Agent","Evidence collection and timeline analysis",78],["⌁","Threat Intel Agent","Indicator enrichment and context",84],["↻","Report Agent","Incident and compliance report drafts",65]];
+let lang="hu",selectedIncident=1,selectedVector="ssh",selectedNode="dmz-web-01",activeTab="overview";
+const names={warroom:"Műveleti központ",incidents:"Incidenskezelés",range:"Cyber Range topológia",mitre:"MITRE ATT&CK",telemetry:"Telemetria & naplók",ai:"AI Agents & SOAR",nis2:"NIS2 Hub",reports:"Jelentések",members:"Alkalmazottak",team:"Stáblista & manifesztum"};
+const enNames={warroom:"Operations center",incidents:"Incident response",range:"Cyber Range topology",mitre:"MITRE ATT&CK",telemetry:"Telemetry & logs",ai:"AI Agents & SOAR",nis2:"NIS2 Hub",reports:"Reports",members:"Members",team:"Team & manifesto"};
+function t(k){return (translations[lang]||translations.hu)[k]||k}
+function toast(msg){const el=$("#toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2600)}
+
+function openSidebar(){
+  const s=$("#sidebar"),b=$("#sidebarBackdrop");
+  if(s)s.classList.add("open");
+  if(b)b.classList.add("active");
+}
+function closeSidebar(){
+  const s=$("#sidebar"),b=$("#sidebarBackdrop");
+  if(s)s.classList.remove("open");
+  if(b)b.classList.remove("active");
+}
+function toggleSidebar(){
+  const s=$("#sidebar");
+  if(!s)return;
+  if(s.classList.contains("open"))closeSidebar();
+  else openSidebar();
+}
+let currentPage="warroom",previousPage="warroom";
+function go(page){
+  if(page!==currentPage){previousPage=currentPage;currentPage=page;}
+  $$(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+page));
+  $$(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+  const title=(lang==="hu"?names:enNames)[page]||page;
+  $("#crumbCurrent").textContent=title;
+  $("#mobileCurrentTitle").textContent=title;
+  const returnBtn=$("#mobileReturnBtn");
+  if(returnBtn){
+    returnBtn.classList.toggle("visible",page!=="warroom");
+    $("#mobileReturnLabel").textContent=lang==="hu"?"Vissza":"Back";
+  }
+  $$("#mobileBottomNav button[data-go]").forEach(b=>b.classList.toggle("active",b.dataset.go===page));
+  closeSidebar();
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(page==="incidents")renderIncidents();
+  if(page==="range")renderFullTopology();
+  if(page==="mitre")renderMitre();
+  if(page==="ai")renderAgents();
+  if(page==="members")renderMembers();
+}
+function setLang(l){lang=l;document.documentElement.lang=l;$$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(translations[l][k])el.innerHTML=translations[l][k]});$$("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});$$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===l));$("#crumbCurrent").textContent=(l==="hu"?names:enNames)[$(".nav button.active")?.dataset.page]||"SOC";$("#mobileCurrentTitle").textContent=$("#crumbCurrent").textContent;$("#mobileReturnLabel").textContent=l==="hu"?"Vissza":"Back";renderMembers();renderIncidents();renderWarIncidents();renderMitre();renderAgents();renderLogs();renderFullTopology();renderDetail();renderNodeDetails();$("#vectorSelected").textContent=t("selectedVector")+": "+({ssh:"SSH brute force + CVE",sql:"SQL injection",cowrie:"Cowrie honeypot",lockbit:"LockBit 3.0 emulation"}[selectedVector]);}
+function renderWarIncidents(){const host=$("#warIncidentList");host.innerHTML=incidents.slice(0,4).map(i=>`<div class="incident-row ${selectedIncident===i.id?"selected":""}" data-id="${i.id}"><span class="incident-num">${i.id}</span><div><strong>${i.title}</strong><small>${i.host} · <span class="${i.severity==="CRITICAL"?"":"muted"}">${i.severity}</span></small></div><span class="incident-time">${i.time}</span></div>`).join("");$$(".incident-row",host).forEach(el=>el.onclick=()=>{selectedIncident=+el.dataset.id;go("incidents");renderIncidents()})}
+function renderIncidents(){const q=($("#incidentSearch")?.value||"").toLowerCase(),sev=$("#severityFilter")?.value||"all",state=$("#stateFilter")?.value||"all";const arr=incidents.filter(i=>(i.title+" "+i.host+" "+i.source).toLowerCase().includes(q)&&(sev==="all"||i.severity===sev)&&(state==="all"||i.state===state));$("#incidentCount").textContent=arr.length+" RECORDS";$("#incidentList").innerHTML=arr.length?arr.map(i=>`<div class="incident-row ${selectedIncident===i.id?"selected":""}" data-id="${i.id}"><span class="incident-num">${i.id}</span><div><strong>${i.title}</strong><small><span class="status ${i.severity==="CRITICAL"?"red":i.severity==="HIGH"?"amber":""}">${i.severity}</span> &nbsp; ${i.state}<br>${i.host}</small></div><span class="incident-time">${i.time}</span></div>`).join(""):'<div class="empty">No matching incidents.</div>';$$(".incident-row",$("#incidentList")).forEach(el=>el.onclick=()=>{
+  selectedIncident=+el.dataset.id;
+  renderIncidents();
+  renderDetail();
+  if(window.innerWidth<=850){
+    $("#incidentDetail")?.scrollIntoView({behavior:"smooth"});
+  }
+});
+$("#incidentBackBtn")?.addEventListener("click",()=>{
+  $("#incidentList")?.scrollIntoView({behavior:"smooth"});
+});renderDetail()}
+function renderDetail(){const i=incidents.find(x=>x.id===selectedIncident)||incidents[0];const stateLabels=["new","triaged","investigating","contained","resolved"],idx=stateLabels.indexOf(i.state);$("#incidentDetail").innerHTML=`<button class="incident-back-btn" id="incidentBackBtn">← <span data-i18n="backToList">Vissza az incidenslistához</span></button><div class="detail-top"><div><span class="status ${i.severity==="CRITICAL"?"red":i.severity==="HIGH"?"amber":""}">${i.severity}</span><h2>${i.title}</h2><div class="subline">HOST: <span class="mono">${i.host}</span> · ${i.time} · <span class="mono">${i.count} alerts</span></div></div><button class="btn" id="saveIncident">${lang==="hu"?"Mentés":"Save"}</button></div><div class="timeline">${stateLabels.map((s,n)=>`<div class="step ${n<idx?"done":""} ${n===idx?"current":""}"><i></i>${s}</div>`).join("")}</div><div class="toolbar"><label class="subline" for="stateChange">${lang==="hu"?"Állapot módosítása":"Update state"}</label><select class="field" id="stateChange">${stateLabels.map(s=>`<option ${s===i.state?"selected":""}>${s}</option>`).join("")}</select><button class="btn btn-primary" id="updateState">${lang==="hu"?"Állapot mentése":"Save state"}</button></div><div class="detail-tabs">${[["overview",lang==="hu"?"Áttekintés":"Overview"],["telemetry",lang==="hu"?"Telemetria":"Telemetry"],["ioc","IoC"],["ai",lang==="hu"?"AI-elemzés":"AI analysis"],["soar","SOAR"],["nis2","NIS2"]].map(([id,label])=>`<button class="tab ${activeTab===id?"active":""}" data-tab="${id}">${label}</button>`).join("")}</div><div class="tab-panel" id="detailTabPanel">${detailTabContent(i)}</div><div class="detail-kv"><div class="kv"><small>${lang==="hu"?"Célrendszer":"Target system"}</small><strong>${i.host}<br>${i.ip}</strong></div><div class="kv"><small>${lang==="hu"?"Forrás IP":"Source IP"}</small><strong class="mono">${i.source}</strong></div><div class="kv"><small>${lang==="hu"?"Szabályozási kör":"Regulatory context"}</small><strong>SIGNIFICANT_INCIDENT<br>2024. évi LXIX. tv.</strong></div></div>`;$("#saveIncident").onclick=()=>toast(lang==="hu"?"Incidensnézet mentve (demó).":"Incident view saved (demo).");$("#updateState").onclick=()=>{i.state=$("#stateChange").value;renderIncidents();toast(lang==="hu"?"Incidensállapot frissítve.":"Incident state updated.")};$$("[data-tab]",$("#incidentDetail")).forEach(b=>b.onclick=()=>{activeTab=b.dataset.tab;renderDetail()})}
+function detailTabContent(i){if(activeTab==="overview")return `<div class="eyebrow">// INCIDENT CONTEXT</div><p>${i.context}</p><div class="eyebrow" style="margin-top:14px">// DETECTED MITRE ATT&CK TECHNIQUES</div><p class="mono">${i.techs.join(" · ")}</p>`;if(activeTab==="telemetry")return `<div class="table-responsive"><table class="table"><tr><th>TIME</th><th>SOURCE</th><th>EVENT</th></tr><tr><td>${i.time}:42</td><td>Suricata IDS</td><td>Alert correlation · ${i.count} events</td></tr><tr><td>${i.time}:47</td><td>Range sensor</td><td>Evidence attached to incident</td></tr></table></div>`;if(activeTab==="ioc")return `<div class="table-responsive"><table class="table"><tr><th>TYPE</th><th>VALUE</th><th>CONTEXT</th></tr><tr><td>IPv4</td><td class="mono">${i.source}</td><td>Simulated source indicator</td></tr><tr><td>HOST</td><td class="mono">${i.host}</td><td>Affected lab asset</td></tr></table></div>`;if(activeTab==="ai")return `<div class="eyebrow">ANALYST ASSISTANCE</div><p>Correlated ${i.count} sample events across authentication, process and network telemetry. Suggested next step: validate evidence and confirm affected scope before containment.</p><span class="status amber">Human review required</span>`;if(activeTab==="soar")return `<p>Suggested playbook: <b>Containment & Forensics</b>. Actions are simulated in this prototype; no real endpoint or network changes are performed.</p><button class="btn btn-primary" id="detailPlaybook">${lang==="hu"?"Playbook felülvizsgálata":"Review playbook"}</button>`;return `<p>Draft a structured incident summary, affected assets, timeline, impact assessment and response measures. Verify legal classification and deadlines against current applicable requirements.</p><button class="btn btn-primary" id="detailReport">${lang==="hu"?"Jelentéstervezet":"Draft report"}</button>`}
+function renderMitre(){$("#mitreMatrix").innerHTML=tactics.map(([id,name,n])=>`<div class="tactic ${n?"hit":""}"><b>${id}</b><span>${name}</span><small>${n?n+" "+(lang==="hu"?"találat":"hits"):(lang==="hu"?"Nincs észlelés":"No detection")}</small></div>`).join("")}
+function renderAgents(){$("#agentGrid").innerHTML=agents.map(a=>`<article class="card agent"><div class="agent-icon">${a[0]}</div><h3>${a[1]}</h3><p>${a[2]}</p><div style="display:flex;justify-content:space-between;font-size:10px"><span class="muted">${lang==="hu"?"Ügynökállapot":"Agent health"}</span><b style="color:var(--green)">${a[3]}%</b></div><div class="bar"><i style="width:${a[3]}%"></i></div><span class="status green">${lang==="hu"?"Aktív":"Active"}</span></article>`).join("")}
+function renderLogs(){const q=($("#logSearch")?.value||"").toLowerCase(),level=$("#logLevel")?.value||"all";const arr=logs.filter(l=>(Object.values(l).join(" ").toLowerCase().includes(q))&&(level==="all"||l.level===level));$("#logTable").innerHTML=arr.map(l=>`<tr><td class="mono">${l.time}</td><td>${l.source}</td><td>${l.event}</td><td class="mono">${l.host}</td><td><span class="status ${l.level==="CRITICAL"?"red":l.level==="HIGH"?"amber":"green"}">${l.level}</span></td></tr>`).join("")}
+function renderFullTopology(){const svg=$("#fullTopology");if(!svg)return;const coords=[[350,35],[350,105],[180,170],[520,170],[100,285],[265,305],[440,285],[600,285]],edges=[[0,1],[1,2],[1,3],[2,4],[2,5],[3,6],[3,7],[5,6],[4,5]];svg.innerHTML=`<g stroke="#2e526c" stroke-width="1.5" fill="none">${edges.map(([a,b])=>`<path d="M${coords[a][0]} ${coords[a][1]} L${coords[b][0]} ${coords[b][1]}"/>`).join("")}</g>`+nodes.map((n,i)=>`<g class="node ${n[0]===selectedNode?"active":""}" data-node="${n[0]}"><circle cx="${coords[i][0]}" cy="${coords[i][1]}" r="17"/><text x="${coords[i][0]}" y="${coords[i][1]+34}" text-anchor="middle">${n[0]}</text><text x="${coords[i][0]}" y="${coords[i][1]+47}" text-anchor="middle" style="fill:#6f91aa;font-size:8px">${n[1]}</text></g>`).join("");$$(".node",svg).forEach(n=>n.onclick=()=>{selectedNode=n.dataset.node;renderFullTopology();renderNodeDetails()})}
+function renderNodeDetails(){const n=nodes.find(x=>x[0]===selectedNode)||nodes[1];$("#nodeName").textContent=n[0];$("#nodeIp").textContent=n[1];$("#nodeDesc").textContent=n[2]+" · "+(lang==="hu"?"szimulált eszköz":"simulated asset");}
+function renderVector(){const names={ssh:"SSH brute force + CVE",sql:"SQL injection",cowrie:"Cowrie honeypot",lockbit:"LockBit 3.0 emulation"};$("#vectorSelected").textContent=t("selectedVector")+": "+names[selectedVector];$$("[data-vector]").forEach(b=>b.classList.toggle("selected",b.dataset.vector===selectedVector))}
+function exportCsv(filename,rows){const csv=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\r\n");const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);toast(lang==="hu"?"Export elkészült.":"Export created.")}
+function updateClock(){const d=new Date();const time=d.toLocaleTimeString(lang==="hu"?"hu-HU":"en-GB",{hour12:false});$("#sideClock").textContent=(lang==="hu"?"HELYI IDŐ":"LOCAL TIME")+" · "+time;$("#headClock").textContent=time}
+$("#nav").addEventListener("click",e=>{const b=e.target.closest("[data-page]");if(b)go(b.dataset.page)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)go(b.dataset.go)});
+$$("[data-lang]").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+$("#menuBtn").onclick=(e)=>{e.preventDefault();e.stopPropagation();toggleSidebar();};
+$("#helpBtn").onclick=()=>toast(lang==="hu"?"Oktatási demó · A felületi adatok szimuláltak.":"Educational demo · Interface data is simulated.");
+$$("[data-vector]").forEach(b=>b.onclick=()=>{selectedVector=b.dataset.vector;renderVector()});
+$("#simulateBtn").onclick=()=>{const label={ssh:"SSH brute-force + CVE",sql:"SQL injection",cowrie:"Cowrie honeypot interaction",lockbit:"LockBit 3.0 emulation"}[selectedVector];const time=new Date().toLocaleTimeString("hu-HU",{hour12:false});$("#miniFeed").insertAdjacentHTML("afterbegin",`<div class="feed-row"><span class="feed-time">${time}</span><div><strong>Cyber Range · ${label}</strong><p>${lang==="hu"?"Szimulációs esemény indítva · nincs külső forgalom":"Simulation event started · no external traffic"}</p></div><span class="status amber">DEMO</span></div>`);toast(lang==="hu"?"Demóesemény rögzítve. Valós támadás nem indul.":"Demo event recorded. No real attack launched.");};
+$("#incidentSearch").addEventListener("input",renderIncidents);$("#severityFilter").onchange=renderIncidents;$("#stateFilter").onchange=renderIncidents;$("#logSearch").addEventListener("input",renderLogs);$("#logLevel").onchange=renderLogs;
+$("#nodeSim").onclick=()=>{selectedVector="ssh";renderVector();go("warroom");toast(lang==="hu"?"Válassz egy szimulációs vektort a War Roomban.":"Choose a simulation vector in the War Room.")};
+$$(".playbook-btn").forEach(b=>b.onclick=()=>{if(b.dataset.playbook==="Containment & Forensics"||b.dataset.playbook==="NIS2 Report Draft")toast(lang==="hu"?"Jóváhagyás szükséges — demó módban nincs végrehajtás.":"Approval required — no execution in demo mode.");else toast(lang==="hu"?"Playbook lefutott a demóban: "+b.dataset.playbook:"Demo playbook completed: "+b.dataset.playbook);$("#aiFeed").insertAdjacentHTML("afterbegin",`<div class="feed-row"><span class="feed-time">${new Date().toLocaleTimeString("hu-HU",{hour12:false})}</span><div><strong>${b.dataset.playbook}</strong><p>${lang==="hu"?"Demó-végrehajtás rögzítve.":"Demo execution recorded."}</p></div><span class="status green">Done</span></div>`)});
+$("#exportLogs").onclick=()=>exportCsv("soc-telemetry.csv",[["Timestamp","Source","Event","Host","Level"],...logs.map(l=>[l.time,l.source,l.event,l.host,l.level])]);
+$("#exportEvidence").onclick=()=>exportCsv("soc-evidence-register.csv",[["ID","Evidence","Owner","Review date","State"],["EV-001","Incident Response Procedure","SOC Lead","2026-10-01","Verified"],["EV-002","Access Control Review","IT Operations","2026-09-28","Verified"],["EV-003","Supplier Risk Assessment","Risk Owner","2026-08-15","Review"]]);
+$("#exportReport").onclick=()=>exportCsv("soc-kpi-summary.csv",[["Metric","Value","Target"],["MTTD","4.2 min","<15 min"],["MTTR","18.5 min","<60 min"],["Mandatory training","96%",">=95%"],["Sensor availability","100%","99.5%"]]);
+$$(".export-single").forEach(b=>b.onclick=()=>exportCsv(b.dataset.name.toLowerCase().replaceAll(" ","-")+".csv",[["Report","Period","Status"],[b.dataset.name,"Demo","Sample data"]]));
+$("#draftReport").onclick=()=>{go("incidents");toast(lang==="hu"?"A jelentéstervezethez válassz ki egy incidenst.":"Select an incident to draft a report.");};
+$("#detailReport")?.addEventListener("click",()=>toast("Report draft prepared (demo)."));
+$("#detailPlaybook")?.addEventListener("click",()=>toast("Review required (demo)."));
+$("#draftReport").addEventListener("click",()=>{});
+
+const membersData=[
+  {id:1,name:"Csajbók Attila Csaba",role:"Head of SOC",pillar:"leadership",team:"soc",subteam:"Vezetés",lead:true},
+  {id:2,name:"Bélai Dominik Péter",role:"SOC Manager",pillar:"leadership",team:"soc",subteam:"Menedzsment",lead:true},
+  {id:3,name:"Lay Kristóf",role:"SIEM Team Lead",pillar:"siem",team:"siem-lead",subteam:"SIEM Vezetés",lead:true},
+  {id:4,name:"Füle Zoltán",role:"Documentation",pillar:"siem",team:"siem-doc",subteam:"SIEM Dokumentáció",lead:false},
+  {id:5,name:"Sturcz Balázs",role:"Wazuh Lead",pillar:"siem",team:"wazuh",subteam:"Wazuh / Detection",lead:true},
+  {id:6,name:"Szabó Dániel",role:"Engineer",pillar:"siem",team:"wazuh",subteam:"Wazuh / Detection",lead:false},
+  {id:7,name:"Ócsai Olivér",role:"Engineer",pillar:"siem",team:"wazuh",subteam:"Wazuh / Detection",lead:false},
+  {id:8,name:"Bak Róbert József",role:"Engineer",pillar:"siem",team:"wazuh",subteam:"Wazuh / Detection",lead:false},
+  {id:9,name:"Burkovics Levente",role:"Engineer",pillar:"siem",team:"wazuh",subteam:"Wazuh / Detection",lead:false},
+  {id:10,name:"Prekop Bence",role:"MISP Lead",pillar:"siem",team:"misp",subteam:"MISP / Threat Inteligence",lead:true},
+  {id:11,name:"Jeszenszki Sarolta",role:"Engineer",pillar:"siem",team:"misp",subteam:"MISP / Threat Inteligence",lead:false},
+  {id:12,name:"Kiss-Horváth Bendegúz",role:"Engineer",pillar:"siem",team:"misp",subteam:"MISP / Threat Inteligence",lead:false},
+  {id:13,name:"Varju Richárd Dániel",role:"Engineer",pillar:"siem",team:"misp",subteam:"MISP / Threat Inteligence",lead:false},
+  {id:14,name:"Juhász Júlia Natália",role:"Engineer",pillar:"siem",team:"misp",subteam:"MISP / Threat Inteligence",lead:false},
+  {id:15,name:"Libscher Bence",role:"Engineer",pillar:"siem",team:"misp",subteam:"MISP / Threat Inteligence",lead:false},
+  {id:16,name:"Vass Zoltán",role:"Server Lead",pillar:"siem",team:"linux",subteam:"Linux server / Target Simulation",lead:true},
+  {id:17,name:"Kurucz Zoltán",role:"Engineer, Web",pillar:"siem",team:"linux",subteam:"Linux server / Target Simulation",lead:false},
+  {id:18,name:"Muha Balázs",role:"SOAR Team Lead",pillar:"soar",team:"soar-lead",subteam:"SOAR Vezetés",lead:true},
+  {id:19,name:"Szilágyi Marcell",role:"Documentation",pillar:"soar",team:"soar-doc",subteam:"SOAR Dokumentáció",lead:false},
+  {id:20,name:"Pintér András",role:"Shuffle Lead",pillar:"soar",team:"shuffle",subteam:"Shuffle / Orchestration",lead:true},
+  {id:21,name:"Pauer Barnabás",role:"Engineer",pillar:"soar",team:"shuffle",subteam:"Shuffle / Orchestration",lead:false},
+  {id:22,name:"Severin Simon Máté",role:"Engineer",pillar:"soar",team:"shuffle",subteam:"Shuffle / Orchestration",lead:false},
+  {id:23,name:"Erdős Dániel",role:"Engineer",pillar:"soar",team:"shuffle",subteam:"Shuffle / Orchestration",lead:false},
+  {id:24,name:"Komlósi Csongor",role:"Engineer",pillar:"soar",team:"shuffle",subteam:"Shuffle / Orchestration",lead:false},
+  {id:25,name:"Lévai Lili",role:"Engineer",pillar:"soar",team:"shuffle",subteam:"Shuffle / Orchestration",lead:false},
+  {id:26,name:"Brúnó Kosztyu",role:"DFIR-IRIS Lead",pillar:"soar",team:"dfir",subteam:"DFIR-IRIS / Incident Response",lead:true},
+  {id:27,name:"Berta Bettina",role:"Engineer",pillar:"soar",team:"dfir",subteam:"DFIR-IRIS / Incident Response",lead:false},
+  {id:28,name:"Havel Lilla",role:"Engineer, Finance",pillar:"soar",team:"dfir",subteam:"DFIR-IRIS / Incident Response",lead:false},
+  {id:29,name:"Kocsis Balázs",role:"Engineer",pillar:"soar",team:"dfir",subteam:"DFIR-IRIS / Incident Response",lead:false},
+  {id:30,name:"Konda Dávid",role:"Engineer",pillar:"soar",team:"dfir",subteam:"DFIR-IRIS / Incident Response",lead:false},
+  {id:31,name:"Inzám Roland",role:"Engineer",pillar:"soar",team:"dfir",subteam:"DFIR-IRIS / Incident Response",lead:false}
+];
+
+let activeMembersView="org";
+
+function getInitials(name){
+  return name.split(" ").filter(Boolean).slice(0,2).map(p=>p[0]).join("").toUpperCase();
+}
+
+function renderMembers(){
+  const query=($("#memberSearch")?.value||"").toLowerCase().trim();
+  const pillarFilter=$("#pillarFilter")?.value||"all";
+  const teamFilter=$("#teamFilter")?.value||"all";
+
+  const filtered=membersData.filter(m=>{
+    const matchQuery=!query||m.name.toLowerCase().includes(query)||m.role.toLowerCase().includes(query)||m.subteam.toLowerCase().includes(query);
+    const matchPillar=pillarFilter==="all"||m.pillar===pillarFilter;
+    const matchTeam=teamFilter==="all"||m.team===teamFilter;
+    return matchQuery&&matchPillar&&matchTeam;
+  });
+
+  const countBadge=$("#membersCountBadge");
+  if(countBadge)countBadge.textContent=filtered.length;
+
+  renderMembersOrg(filtered);
+  renderMembersTable();
+}
+
+function renderMembersOrg(filtered){
+  const container=$("#membersOrgContainer");
+  if(!container)return;
+
+  const getSubteamMembers=(teamKey)=>filtered.filter(m=>m.team===teamKey);
+  const getPillarLeads=(pillarKey)=>filtered.filter(m=>m.pillar===pillarKey&&(m.team===pillarKey+"-lead"||m.team===pillarKey+"-doc"));
+
+  const leadership=filtered.filter(m=>m.pillar==="leadership");
+  const siemLeads=getPillarLeads("siem");
+  const soarLeads=getPillarLeads("soar");
+
+  const wazuh=getSubteamMembers("wazuh");
+  const misp=getSubteamMembers("misp");
+  const linux=getSubteamMembers("linux");
+  const shuffle=getSubteamMembers("shuffle");
+  const dfir=getSubteamMembers("dfir");
+
+  const hasSiem=siemLeads.length||wazuh.length||misp.length||linux.length;
+  const hasSoar=soarLeads.length||shuffle.length||dfir.length;
+
+  function renderCard(m){
+    return `<div class="org-member-item ${m.lead?'is-lead':''}">
+      <div class="org-avatar">${getInitials(m.name)}</div>
+      <div class="org-member-info">
+        <strong title="${m.name}">${m.name}</strong>
+        <span>${m.role}</span>
+      </div>
+    </div>`;
+  }
+
+  function renderSubteam(title,membersList){
+    if(!membersList.length)return '';
+    return `<div class="org-subteam-card">
+      <div class="org-subteam-header">
+        <strong>${title}</strong>
+        <span>${membersList.length} ${lang==="hu"?"fő":"pers."}</span>
+      </div>
+      <div class="org-members-list">
+        ${membersList.map(renderCard).join("")}
+      </div>
+    </div>`;
+  }
+
+  let html='<div class="org-container">';
+
+  if(leadership.length){
+    html+=`<div>
+      <div class="org-section-title"><span>👑</span> ${lang==="hu"?"SOC Felsővezetés & Menedzsment":"SOC Executive Command"}</div>
+      <div class="org-exec-row">
+        ${leadership.map(m=>`
+          <div class="org-exec-card ${m.role.includes("Manager")?'manager':''}">
+            <div class="org-avatar">${getInitials(m.name)}</div>
+            <div class="org-details">
+              <h3>${m.name}</h3>
+              <p>${m.role}</p>
+              <span class="org-badge ${m.role.includes("Head")?'head':'manager'}">${m.role}</span>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  }
+
+  if(hasSiem||hasSoar){
+    html+='<div class="org-pillars-grid">';
+
+    if(hasSiem){
+      html+=`<div class="org-pillar-box">
+        <div class="org-pillar-head">
+          <div class="org-pillar-title">
+            <span class="org-pillar-tag siem">SIEM</span>
+            <h2>Security Information & Events</h2>
+          </div>
+          <span class="status green">${wazuh.length+misp.length+linux.length+siemLeads.length} ${lang==="hu"?"fő":"members"}</span>
+        </div>
+        ${siemLeads.length?`
+          <div>
+            <div class="org-section-title">${lang==="hu"?"Divízió vezetés & dokumentáció":"Division Leads & Documentation"}</div>
+            <div class="org-pillar-leads">
+              ${siemLeads.map(m=>`
+                <div class="org-lead-mini">
+                  <div class="org-avatar">${getInitials(m.name)}</div>
+                  <div class="org-details">
+                    <strong style="font-size:12px;color:#f0f6fc">${m.name}</strong>
+                    <p style="font-size:10px;color:#7e9bb5">${m.role}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `:''}
+        <div class="org-subteams-wrap">
+          ${renderSubteam("Wazuh / Detection",wazuh)}
+          ${renderSubteam("MISP / Threat Inteligence",misp)}
+          ${renderSubteam("Linux server / Target Simulation",linux)}
+        </div>
+      </div>`;
+    }
+
+    if(hasSoar){
+      html+=`<div class="org-pillar-box">
+        <div class="org-pillar-head">
+          <div class="org-pillar-title">
+            <span class="org-pillar-tag soar">SOAR</span>
+            <h2>Security Orchestration & Response</h2>
+          </div>
+          <span class="status green">${shuffle.length+dfir.length+soarLeads.length} ${lang==="hu"?"fő":"members"}</span>
+        </div>
+        ${soarLeads.length?`
+          <div>
+            <div class="org-section-title">${lang==="hu"?"Divízió vezetés & dokumentáció":"Division Leads & Documentation"}</div>
+            <div class="org-pillar-leads">
+              ${soarLeads.map(m=>`
+                <div class="org-lead-mini">
+                  <div class="org-avatar">${getInitials(m.name)}</div>
+                  <div class="org-details">
+                    <strong style="font-size:12px;color:#f0f6fc">${m.name}</strong>
+                    <p style="font-size:10px;color:#7e9bb5">${m.role}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `:''}
+        <div class="org-subteams-wrap">
+          ${renderSubteam("Shuffle / Orchestration",shuffle)}
+          ${renderSubteam("DFIR-IRIS / Incident Response",dfir)}
+        </div>
+      </div>`;
+    }
+
+    html+='</div>';
+  }
+
+  if(!filtered.length){
+    html+=`<div class="empty" style="padding:40px;text-align:center">${lang==="hu"?"Nincs a keresési feltételeknek megfelelő munkatárs.":"No personnel match the search criteria."}</div>`;
+  }
+
+  html+='</div>';
+  container.innerHTML=html;
+}
+
+function renderMembersTable(){
+  const container=$("#excelMatrixContent");
+  if(!container)return;
+
+  const wazuh=[["Sturcz Balázs","Wazuh Lead"],["Szabó Dániel","Engineer"],["Ócsai Olivér","Engineer"],["Bak Róbert József","Engineer"],["Burkovics Levente","Engineer"],["",""]];
+  const misp=[["Prekop Bence","MISP Lead"],["Jeszenszki Sarolta","Engineer"],["Kiss-Horváth Bendegúz","Engineer"],["Varju Richárd Dániel","Engineer"],["Juhász Júlia Natália","Engineer"],["Libscher Bence","Engineer"]];
+  const linux=[["Vass Zoltán","Server Lead"],["Kurucz Zoltán","Engineer, Web"]];
+  const shuffle=[["Pintér András","Shuffle Lead"],["Pauer Barnabás","Engineer"],["Severin Simon Máté","Engineer"],["Erdős Dániel","Engineer"],["Komlósi Csongor","Engineer"],["Lévai Lili","Engineer"]];
+  const dfir=[["Brúnó Kosztyu","DFIR-IRIS Lead"],["Berta Bettina","Engineer"],["Havel Lilla","Engineer, Finance"],["Kocsis Balázs","Engineer"],["Konda Dávid","Engineer"],["Inzám Roland","Engineer"]];
+
+  let html=`<table class="staffing-sheet-table">
+    <thead>
+      <tr><th colspan="10" class="excel-soc-banner">SOC</th></tr>
+    </thead>
+    <tbody>
+      <tr class="excel-lead-row">
+        <td colspan="5" class="excel-person-cell">Csajbók Attila Csaba</td>
+        <td colspan="5" class="excel-role-cell excel-lead-title">Head of SOC</td>
+      </tr>
+      <tr class="excel-lead-row">
+        <td colspan="5" class="excel-person-cell">Bélai Dominik Péter</td>
+        <td colspan="5" class="excel-role-cell excel-lead-title">SOC Manager</td>
+      </tr>
+      <tr>
+        <th colspan="6" class="excel-pillar-banner">SIEM</th>
+        <th colspan="4" class="excel-pillar-banner">SOAR</th>
+      </tr>
+      <tr>
+        <td colspan="3" class="excel-person-cell excel-lead-person">Lay Kristóf</td>
+        <td colspan="3" class="excel-role-cell excel-lead-role">SIEM Team Lead</td>
+        <td colspan="2" class="excel-person-cell excel-lead-person">Muha Balázs</td>
+        <td colspan="2" class="excel-role-cell excel-lead-role">SOAR Team Lead</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="excel-person-cell">Füle Zoltán</td>
+        <td colspan="3" class="excel-role-cell">Documentation</td>
+        <td colspan="2" class="excel-person-cell">Szilágyi Marcell</td>
+        <td colspan="2" class="excel-role-cell">Documentation</td>
+      </tr>
+      <tr>
+        <th colspan="2" class="excel-sub-banner">Wazuh / Detection</th>
+        <th colspan="2" class="excel-sub-banner">MISP / Threat Inteligence</th>
+        <th colspan="2" class="excel-sub-banner">Linux server / Target Simulation</th>
+        <th colspan="2" class="excel-sub-banner">Shuffle / Orchestration</th>
+        <th colspan="2" class="excel-sub-banner">DFIR-IRIS / Incident Response</th>
+      </tr>`;
+
+  for(let row=0;row<6;row++){
+    html+=`<tr>
+      <td class="excel-person-cell ${row===0?'excel-lead-person':''}">${wazuh[row][0]}</td>
+      <td class="excel-role-cell ${row===0?'excel-lead-role':''}">${wazuh[row][1]}</td>
+      <td class="excel-person-cell ${row===0?'excel-lead-person':''}">${misp[row][0]}</td>
+      <td class="excel-role-cell ${row===0?'excel-lead-role':''}">${misp[row][1]}</td>`;
+
+    if(row<2){
+      html+=`<td class="excel-person-cell ${row===0?'excel-lead-person':''}">${linux[row][0]}</td>
+             <td class="excel-role-cell ${row===0?'excel-lead-role':''}">${linux[row][1]}</td>`;
+    }else if(row===2){
+      html+=`<td colspan="2" rowspan="4" class="excel-diagonal-box"></td>`;
+    }
+
+    html+=`<td class="excel-person-cell ${row===0?'excel-lead-person':''}">${shuffle[row][0]}</td>
+           <td class="excel-role-cell ${row===0?'excel-lead-role':''}">${shuffle[row][1]}</td>
+           <td class="excel-person-cell ${row===0?'excel-lead-person':''}">${dfir[row][0]}</td>
+           <td class="excel-role-cell ${row===0?'excel-lead-role':''}">${dfir[row][1]}</td>
+    </tr>`;
+  }
+
+  html+=`</tbody></table>`;
+  container.innerHTML=html;
+}
+
+function exportMembersCsv(){
+  const rows=[["ID","Name","Role","Division","Subteam","Is_Lead"]];
+  membersData.forEach(m=>{
+    rows.push([m.id,m.name,m.role,m.pillar.toUpperCase(),m.subteam,m.lead?"Yes":"No"]);
+  });
+  exportCsv("soc-staffing-members.csv",rows);
+}
+
+// Event Listeners for Mobile Navigation & Return Points
+$("#closeSidebarBtn")?.addEventListener("click",(e)=>{
+  e.preventDefault();
+  closeSidebar();
+});
+
+$("#sidebarBackdrop")?.addEventListener("click",(e)=>{
+  e.preventDefault();
+  closeSidebar();
+});
+
+$("#mobileReturnBtn")?.addEventListener("click",()=>{
+  go(previousPage||"warroom");
+});
+
+$("#mobileNavMenuBtn")?.addEventListener("click",(e)=>{
+  e.preventDefault();
+  e.stopPropagation();
+  toggleSidebar();
+});
+
+$$("#mobileBottomNav button[data-go]").forEach(b=>{
+  b.addEventListener("click",()=>go(b.dataset.go));
+});
+
+window.addEventListener("scroll",()=>{
+  const btn=$("#backToTopBtn");
+  if(btn)btn.classList.toggle("visible",window.scrollY>220);
+});
+
+$("#backToTopBtn")?.addEventListener("click",()=>{
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+window.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    closeSidebar();
+  }
+});
+
+// Document-level delegation for bulletproof mobile taps
+document.addEventListener("click",e=>{
+  if(e.target.closest("#mobileNavMenuBtn")){
+    e.preventDefault();
+    toggleSidebar();
+    return;
+  }
+  if(e.target.closest("#sidebarBackdrop")){
+    e.preventDefault();
+    closeSidebar();
+    return;
+  }
+  if(e.target.closest("#closeSidebarBtn")){
+    e.preventDefault();
+    closeSidebar();
+    return;
+  }
+  const sidebar=$("#sidebar");
+  if(sidebar&&sidebar.classList.contains("open")){
+    if(!e.target.closest("#sidebar")&&!e.target.closest("#menuBtn")&&!e.target.closest("#mobileNavMenuBtn")){
+      closeSidebar();
+    }
+  }
+});
+
+document.addEventListener("touchend",e=>{
+  if(e.target.closest("#sidebarBackdrop")){
+    e.preventDefault();
+    closeSidebar();
+  }
+},{passive:false});
+
+// Members Search & Filter listeners
+$("#memberSearch")?.addEventListener("input",renderMembers);
+$("#pillarFilter")?.addEventListener("change",renderMembers);
+$("#teamFilter")?.addEventListener("change",renderMembers);
+
+$("#viewOrgBtn")?.addEventListener("click",()=>{
+  activeMembersView="org";
+  $("#viewOrgBtn")?.classList.add("active");
+  $("#viewTableBtn")?.classList.remove("active");
+  $("#membersOrgContainer").style.display="block";
+  $("#membersTableContainer").style.display="none";
+});
+
+$("#viewTableBtn")?.addEventListener("click",()=>{
+  activeMembersView="table";
+  $("#viewTableBtn")?.classList.add("active");
+  $("#viewOrgBtn")?.classList.remove("active");
+  $("#membersOrgContainer").style.display="none";
+  $("#membersTableContainer").style.display="block";
+});
+
+$("#exportMembersBtn")?.addEventListener("click",exportMembersCsv);
+
+function init(){
+renderMembers();renderWarIncidents();renderIncidents();renderMitre();renderAgents();renderLogs();renderFullTopology();renderNodeDetails();renderVector();updateClock();setInterval(updateClock,1000);setInterval(()=>{$("#bufferCount").textContent=Math.floor(Math.random()*4);$("#teleBuffer").textContent=$("#bufferCount").textContent},4500)}
+init();
+</script>
+</body>
+</html>
