@@ -1,3 +1,4 @@
+<!-- SOURCE NOEDIT: Master original documentation preserved. -->
 # 🛡️ Security Operations Center (SOC) Operational Manual & Architectural Specification
 
 **Óbudai Egyetem • Bánki Donát Gépész- és Biztonságtechnikai Kar**  

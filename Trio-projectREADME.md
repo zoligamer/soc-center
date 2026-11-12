@@ -1,3 +1,4 @@
+<!-- SOURCE NOEDIT: Master original specification preserved. -->
 # 🛡️ Óbuda Cyber Operations // SOC-80 Mainframe Command Web Portal
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
